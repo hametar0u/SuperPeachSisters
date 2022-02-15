@@ -24,12 +24,24 @@ private:
     bool m_isAlive;
 };
 
-class Obstacle {
+class Obstacle : public Actor {
 public:
     Obstacle(int imageID);
     ~Obstacle();
     
     virtual void blockPath();
+};
+
+class Block : public Obstacle {
+public:
+    Block();
+    ~Block();
+    
+    virtual void doSomething();
+    virtual void getBonked();
+    //TODO: deal with the goodie stuff
+private:
+    bool wasBonked;
 };
 
 #endif // ACTOR_H_

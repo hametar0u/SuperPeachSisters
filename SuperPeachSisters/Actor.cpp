@@ -6,7 +6,7 @@
 //================================================== ACTOR ==================================================//
 
 Actor::Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, int startDirection, int depth, int size)
-: GraphObject(imageID, startX*SPRITE_WIDTH, startY*SPRITE_HEIGHT, startDirection, depth, size) {
+: GraphObject(imageID, startX, startY, startDirection, depth, size) {
     m_isAlive = true;
     m_StudentWorld = StudentWorld;
 }
@@ -23,7 +23,19 @@ void Peach::doSomething() {
     if (m_hp <= 0)
         return;
     
+    int left = KEY_PRESS_LEFT; //copium solution; any other way??
+    int right = KEY_PRESS_RIGHT;
     
+    if (world()->getKey(left)) {
+        setDirection(180);
+        //TODO: calculate target x,y position -> where is position stored anyways?
+        //TODO: check if object at destination position blocks movement
+            //if true, bonk() and return
+            //else update location to destination
+    }
+    else if (world()->getKey(right)) {
+        setDirection(0);
+    }
 } //TODO: implement directional movement
 
 //================================================== OBSTACLE ==================================================//

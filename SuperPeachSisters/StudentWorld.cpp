@@ -45,7 +45,7 @@ int StudentWorld::init()
         for (int x = 0; x < GRID_WIDTH; x++) {
             for (int y = 0; y < GRID_HEIGHT; y++) {
                 ge = lev.getContentsOf(x, y);
-                displayObjectAt(ge, x, y);
+                displayObjectAt(ge, x * SPRITE_WIDTH, y * SPRITE_HEIGHT);
             }
         }
     }
@@ -57,6 +57,8 @@ int StudentWorld::move()
 {
     // This code is here merely to allow the game to build, run, and terminate after you hit enter.
     // Notice that the return value GWSTATUS_PLAYER_DIED will cause our framework to end the current level.
+    m_Peach->doSomething();
+    
     return GWSTATUS_CONTINUE_GAME;
 }
 
@@ -65,6 +67,7 @@ void StudentWorld::cleanUp()
     for (Actor* actor : m_actors) {
         delete actor;
     }
+    delete m_Peach;
 }
 
 

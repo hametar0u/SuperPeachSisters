@@ -14,6 +14,7 @@ public:
     
     //getters
     bool isAlive() { return m_isAlive; }
+    StudentWorld* world() { return m_StudentWorld; }
     
     //setters
     void toggleAlive() { m_isAlive = !m_isAlive; }

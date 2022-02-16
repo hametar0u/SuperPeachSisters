@@ -21,6 +21,7 @@ private:
     void displayObjectAt(Level::GridEntry ge, int x, int y);
     
     std::vector<Actor*> m_actors;
+    //I think I should have a map of positions to Actor*
     Peach* m_Peach;
 };
 

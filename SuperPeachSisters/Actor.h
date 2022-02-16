@@ -7,7 +7,7 @@
 class Actor : public GraphObject {
 public:
     Actor(int imageID, int startX, int startY, int startDirection = 0, int depth = 0, int size = 1);
-    ~Actor();
+    virtual ~Actor() {}
     
     //getters
     bool isAlive() { return m_isAlive; }
@@ -22,20 +22,21 @@ public:
     
 private:
     bool m_isAlive;
+    
 };
 
 class Obstacle : public Actor {
 public:
-    Obstacle(int imageID);
-    ~Obstacle();
+    Obstacle(int imageID, int startX, int startY);
+    virtual ~Obstacle() {}
     
     virtual void blockPath();
 };
 
 class Block : public Obstacle {
 public:
-    Block();
-    ~Block();
+    Block(int x, int y);
+    virtual ~Block() {}
     
     virtual void doSomething();
     virtual void getBonked();

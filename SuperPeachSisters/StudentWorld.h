@@ -3,6 +3,8 @@
 
 #include "GameWorld.h"
 #include "Level.h"
+#include "Actor.h"
+#include <vector>
 #include <string>
 
 // Students:  Add code to this file, StudentWorld.cpp, Actor.h, and Actor.cpp
@@ -16,6 +18,9 @@ public:
   virtual void cleanUp();
 
 private:
+    void displayObjectAt(Level::GridEntry ge, int x, int y);
+    
+    std::vector<Actor*> m_actors;
 };
 
 #endif // STUDENTWORLD_H_

@@ -14,6 +14,8 @@ GameWorld* createStudentWorld(string assetPath)
 StudentWorld::StudentWorld(string assetPath)
 : GameWorld(assetPath)
 {
+    m_actors = {};
+    m_Peach = nullptr;
 }
 
 //int StudentWorld::init() {
@@ -55,12 +57,14 @@ int StudentWorld::move()
 {
     // This code is here merely to allow the game to build, run, and terminate after you hit enter.
     // Notice that the return value GWSTATUS_PLAYER_DIED will cause our framework to end the current level.
-    decLives();
     return GWSTATUS_CONTINUE_GAME;
 }
 
 void StudentWorld::cleanUp()
 {
+    for (Actor* actor : m_actors) {
+        delete actor;
+    }
 }
 
 
@@ -77,14 +81,15 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::peach:
-            cerr << "block at" << x << "," << y << endl;
+            cerr << "peach at " << x << "," << y << endl;
+            m_Peach = new Peach(this, x, y);
             break;
         case Level::flag:
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::block:
-            cerr << "block at" << x << "," << y << endl;
-            m_actors.push_back(new Block(x,y));
+            cerr << "block at " << x << "," << y << endl;
+            m_actors.push_back(new Block(this, x, y));
             break;
         case Level::star_goodie_block:
             cerr << "block at" << x << "," << y << endl;
@@ -99,7 +104,8 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::pipe:
-            cerr << "block at" << x << "," << y << endl;
+            cerr << "pipe at " << x << "," << y << endl;
+            m_actors.push_back(new Pipe(this, x, y));
             break;
         case Level::mario:
             cerr << "block at" << x << "," << y << endl;

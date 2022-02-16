@@ -21,6 +21,7 @@ private:
     void displayObjectAt(Level::GridEntry ge, int x, int y);
     
     std::vector<Actor*> m_actors;
+    Peach* m_Peach;
 };
 
 #endif // STUDENTWORLD_H_

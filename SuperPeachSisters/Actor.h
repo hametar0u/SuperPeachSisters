@@ -14,7 +14,7 @@ public:
     
     //predicates
     bool isAlive() { return m_isAlive; }
-    bool isAt(int x, int y) { return x == m_x && y == m_y; }
+    bool isAt(int x, int y);
     
     //getters
     StudentWorld* world() { return m_StudentWorld; }
@@ -24,8 +24,9 @@ public:
     
     //setters
     void toggleAlive() { m_isAlive = !m_isAlive; }
-    void setX(int new_x);
+    void setX(int new_x); // TODO: remove these if we don't need them
     void setY(int new_y);
+    void setPos(int new_x, int new_y);
     
     //other
     virtual void doSomething() = 0;

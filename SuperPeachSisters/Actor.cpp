@@ -9,6 +9,12 @@ Actor::Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, in
 : GraphObject(imageID, startX, startY, startDirection, depth, size) {
     m_isAlive = true;
     m_StudentWorld = StudentWorld;
+    m_x = startX;
+    m_y = startY;
+}
+
+bool Actor::isAt(int x, int y) {
+    return x == m_x && y == m_y; //TODO: check 4 pixels around x & y
 }
 
 void Actor::setX(int new_x) {
@@ -18,6 +24,12 @@ void Actor::setX(int new_x) {
 
 void Actor::setY(int new_y) {
     //TODO: bound checking?
+    m_y = new_y;
+}
+
+void Actor::setPos(int new_x, int new_y) {
+    //TODO: bound checking
+    m_x = new_x;
     m_y = new_y;
 }
 
@@ -35,27 +47,29 @@ void Peach::doSomething() {
     
     int left = KEY_PRESS_LEFT; //copium solution; any other way??
     int right = KEY_PRESS_RIGHT;
+    int target_x = x();
+    int target_y = y();
     
     if (world()->getKey(left)) {
         setDirection(180);
-        //TODO: calculate target x,y position -> where is position stored anyways?
-        int target_x = x() + 4;
-        int target_y = y();
-        //TODO: check if object at destination position blocks movement
-        if (world()->objectAt(target_x, target_y)) {
-            world()->bonkObjectsAt(target_x, target_y);
-            return;
-        }
-            //if true, bonk() and return
-            //else update location to destination
-        else {
-            setX(target_x);
-        }
+        target_x -= 4;
+        
     }
     else if (world()->getKey(right)) {
         setDirection(0);
+        target_x += 4;
     }
-} //TODO: implement directional movement
+    
+    //TODO: check if object at destination position blocks movement
+    if (world()->objectAt(target_x, target_y)) {
+        world()->bonkObjectsAt(target_x, target_y);
+        return;
+    }
+    else {
+        moveTo(target_x, target_y);
+        setPos(target_x, target_y);
+    }
+}
 
 //================================================== OBSTACLE ==================================================//
 

@@ -16,6 +16,11 @@ StudentWorld::StudentWorld(string assetPath)
 {
     m_actors = {};
     m_Peach = nullptr;
+//    for (int x = 0; x < VIEW_WIDTH; x++) {
+//        for (int y = 0; y < VIEW_HEIGHT; y++) {
+//            m_coordmap[x][y] = nullptr;
+//        }
+//    }
 }
 
 //int StudentWorld::init() {
@@ -57,8 +62,8 @@ int StudentWorld::move()
 {
     // This code is here merely to allow the game to build, run, and terminate after you hit enter.
     // Notice that the return value GWSTATUS_PLAYER_DIED will cause our framework to end the current level.
-    m_Peach->doSomething();
     
+    m_Peach->doSomething();
     return GWSTATUS_CONTINUE_GAME;
 }
 
@@ -93,6 +98,7 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
         case Level::block:
             cerr << "block at " << x << "," << y << endl;
             m_actors.push_back(new Block(this, x, y));
+//            m_coordmap[x][y] = new Block(this, x, y);
             break;
         case Level::star_goodie_block:
             cerr << "block at" << x << "," << y << endl;
@@ -113,5 +119,22 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
         case Level::mario:
             cerr << "block at" << x << "," << y << endl;
             break;
+    }
+}
+
+bool StudentWorld::objectAt(int x, int y) {
+    for (Actor* actor : m_actors) {
+        if (actor->isAt(x, y)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void StudentWorld::bonkObjectsAt(int x, int y) {
+    for (Actor* actor : m_actors) {
+        if (actor->isAt(x, y)) {
+            actor->getBonked();
+        }
     }
 }

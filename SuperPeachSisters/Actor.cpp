@@ -11,6 +11,16 @@ Actor::Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, in
     m_StudentWorld = StudentWorld;
 }
 
+void Actor::setX(int new_x) {
+    //TODO: bound checking?
+    m_x = new_x;
+}
+
+void Actor::setY(int new_y) {
+    //TODO: bound checking?
+    m_y = new_y;
+}
+
 //================================================== PEACH ==================================================//
 
 Peach::Peach(StudentWorld* StudentWorld, int x, int y) : Actor(StudentWorld, IID_PEACH, x, y) {
@@ -29,9 +39,18 @@ void Peach::doSomething() {
     if (world()->getKey(left)) {
         setDirection(180);
         //TODO: calculate target x,y position -> where is position stored anyways?
+        int target_x = x() + 4;
+        int target_y = y();
         //TODO: check if object at destination position blocks movement
+        if (world()->objectAt(target_x, target_y)) {
+            world()->bonkObjectsAt(target_x, target_y);
+            return;
+        }
             //if true, bonk() and return
             //else update location to destination
+        else {
+            setX(target_x);
+        }
     }
     else if (world()->getKey(right)) {
         setDirection(0);

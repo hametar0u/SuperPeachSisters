@@ -12,12 +12,20 @@ public:
     Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, int startDirection = 0, int depth = 0, int size = 1);
     virtual ~Actor() {}
     
-    //getters
+    //predicates
     bool isAlive() { return m_isAlive; }
+    bool isAt(int x, int y) { return x == m_x && y == m_y; }
+    
+    //getters
     StudentWorld* world() { return m_StudentWorld; }
+    
+    int x() { return m_x; }
+    int y() { return m_y; }
     
     //setters
     void toggleAlive() { m_isAlive = !m_isAlive; }
+    void setX(int new_x);
+    void setY(int new_y);
     
     //other
     virtual void doSomething() = 0;
@@ -27,6 +35,10 @@ public:
 private:
     bool m_isAlive;
     StudentWorld* m_StudentWorld;
+    
+    //position of actor
+    int m_x;
+    int m_y;
 };
 
 //================================================== PEACH ==================================================//

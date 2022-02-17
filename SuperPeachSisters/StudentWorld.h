@@ -27,6 +27,7 @@ public:
     void bonkObjectsAt(int x, int y);
     bool overlapsWithPeach(int x, int y);
     void finishLevel() { level_finished = true; }
+    void endGame() { game_finished = true; }
 
 private:
     void displayObjectAt(Level::GridEntry ge, int x, int y);
@@ -34,7 +35,8 @@ private:
     std::vector<Actor*> m_actors;
     Peach* m_Peach;
     
-    bool level_finished;
+    bool level_finished; //TODO: come back to these
+    bool game_finished;
 };
 
 #endif // STUDENTWORLD_H_

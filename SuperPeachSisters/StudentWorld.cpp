@@ -67,6 +67,10 @@ int StudentWorld::move()
         playSound(SOUND_FINISHED_LEVEL);
         return GWSTATUS_FINISHED_LEVEL;
     }
+    if (game_finished) {
+        playSound(SOUND_GAME_OVER);
+        return GWSTATUS_PLAYER_WON;
+    }
     
     if (getLives() > 0)
         return GWSTATUS_CONTINUE_GAME;

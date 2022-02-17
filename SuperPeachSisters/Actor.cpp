@@ -154,11 +154,23 @@ Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, II
 Flag::Flag(StudentWorld* StudentWorld, int startX, int startY) : Actor(StudentWorld, IID_FLAG, startX, startY) {}
 
 void Flag::doSomething() {
-//    if (isAlive())
+//    if (isAlive()) //TODO: implement later? its in the spec but doesn't do much
 //        return;
     if (world()->overlapsWithPeach(x(), y())) {
         world()->increaseScore(1000);
         toggleAlive();
-        world()->finishLevel();
+        progressNext();
     }
+}
+
+void Flag::progressNext() {
+    world()->finishLevel();
+}
+
+//MARIO
+
+Mario::Mario(StudentWorld* StudentWorld, int x, int y) : Flag(StudentWorld, x, y) {}
+
+void Mario::progressNext() {
+    world()->endGame();
 }

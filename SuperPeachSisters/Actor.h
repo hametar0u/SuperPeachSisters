@@ -97,7 +97,16 @@ public:
     virtual ~Flag() {}
     
     void doSomething(); //??
+    virtual void progressNext();
 };
 
+class Mario : public Flag {
+public:
+    Mario(StudentWorld* StudentWorld, int x, int y);
+    virtual ~Mario() {}
+    
+    virtual void progressNext();
+    
+};
 
 #endif // ACTOR_H_

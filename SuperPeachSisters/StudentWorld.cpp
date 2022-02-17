@@ -2,6 +2,8 @@
 #include "GameConstants.h"
 #include "Level.h"
 #include <string>
+#include <sstream>
+#include <iomanip>
 using namespace std;
 
 GameWorld* createStudentWorld(string assetPath)
@@ -22,8 +24,11 @@ StudentWorld::StudentWorld(string assetPath)
 int StudentWorld::init()
 {
     Level lev(assetPath());
-
-    string level_file = "level01.txt"; //TODO: use stringstream to generate filename instead of hard coding like this
+    
+    ostringstream oss;
+    oss << "level0" << getLevel() << ".txt";
+    
+    string level_file = oss.str(); //TODO: use stringstream to generate filename instead of hard coding like this
     Level::LoadResult result = lev.loadLevel(level_file);
     if (result == Level::load_fail_file_not_found) {
         cerr << "Could not find level01.txt data file" << endl;
@@ -74,6 +79,11 @@ void StudentWorld::cleanUp()
         delete actor;
     }
     delete m_Peach;
+    
+    m_Peach = nullptr;
+    m_actors.resize(0); //is this allowed lol
+    
+    level_finished = false;
 }
 
 
@@ -90,15 +100,15 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::peach:
-            cerr << "peach at " << x << "," << y << endl;
+//            cerr << "peach at " << x << "," << y << endl;
             m_Peach = new Peach(this, x, y);
             break;
         case Level::flag:
-            cerr << "flag at " << x << "," << y << endl;
+//            cerr << "flag at " << x << "," << y << endl;
             m_actors.push_back(new Flag(this, x, y));
             break;
         case Level::block:
-            cerr << "block at " << x << "," << y << endl;
+//            cerr << "block at " << x << "," << y << endl;
             m_actors.push_back(new Block(this, x, y));
 //            m_coordmap[x][y] = new Block(this, x, y);
             break;
@@ -115,7 +125,7 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::pipe:
-            cerr << "pipe at " << x << "," << y << endl;
+//            cerr << "pipe at " << x << "," << y << endl;
             m_actors.push_back(new Pipe(this, x, y));
             break;
         case Level::mario:

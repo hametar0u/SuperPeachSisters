@@ -99,7 +99,7 @@ void Peach::doSomething() {
                         remaining_jump_distance = 12;
                     }
                     else {
-                        remaining_jump_distance = 20; //TODO: change back to 8 in prod
+                        remaining_jump_distance = 8;
                     }
                     world()->playSound(SOUND_PLAYER_JUMP);
                     return;
@@ -154,8 +154,8 @@ Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, II
 Flag::Flag(StudentWorld* StudentWorld, int startX, int startY) : Actor(StudentWorld, IID_FLAG, startX, startY) {}
 
 void Flag::doSomething() {
-    if (isAlive())
-        return;
+//    if (isAlive())
+//        return;
     if (world()->overlapsWithPeach(x(), y())) {
         world()->increaseScore(1000);
         toggleAlive();

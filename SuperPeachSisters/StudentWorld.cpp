@@ -131,7 +131,9 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
 
 bool StudentWorld::objectAt(int x, int y) {
     for (Actor* actor : m_actors) {
+//        cerr << actor->x() << "," << actor->y() << endl;
         if (actor->isAt(x, y)) {
+//            cerr << "t" << endl;
             return true;
         }
     }

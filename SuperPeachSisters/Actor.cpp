@@ -14,7 +14,9 @@ Actor::Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, in
 }
 
 bool Actor::isAt(int x, int y) {
-    return x == m_x && y == m_y; //TODO: check 4 pixels around x & y
+    return x >= m_x && x < m_x + SPRITE_WIDTH
+        && y >= m_y && y < m_y + SPRITE_HEIGHT;
+    
 }
 
 void Actor::setX(int new_x) {
@@ -67,8 +69,23 @@ void Peach::doSomething() {
         }
         else {
             moveTo(target_x, target_y);
+            setPos(target_x, target_y);
             remaining_jump_distance--;
         }
+    }
+    else {
+        bool objectBelow = false;
+        for (int i = 1; i < 4; i++) {
+            if (world()->objectAt(target_x, target_y - i))
+                objectBelow = true;
+        }
+
+        if (!objectBelow) {
+            target_y -= 4;
+            moveTo(target_x, target_y);
+            setPos(target_x, target_y);
+        }
+
     }
     
     int keyPress;

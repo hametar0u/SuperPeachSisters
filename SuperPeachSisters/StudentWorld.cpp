@@ -16,18 +16,8 @@ StudentWorld::StudentWorld(string assetPath)
 {
     m_actors = {};
     m_Peach = nullptr;
-//    for (int x = 0; x < VIEW_WIDTH; x++) {
-//        for (int y = 0; y < VIEW_HEIGHT; y++) {
-//            m_coordmap[x][y] = nullptr;
-//        }
-//    }
+    level_finished = false;
 }
-
-//int StudentWorld::init() {
-//    m_actors.push_back(new Block());
-//    cerr << "do console logs even do anything" << endl; //console log doesn't do anything
-//    return GWSTATUS_CONTINUE_GAME;
-//}
 
 int StudentWorld::init()
 {
@@ -66,6 +56,11 @@ int StudentWorld::move()
     m_Peach->doSomething();
     for (Actor* actor : m_actors) {
         actor->doSomething();
+    }
+    
+    if (level_finished) {
+        playSound(SOUND_FINISHED_LEVEL);
+        return GWSTATUS_FINISHED_LEVEL;
     }
     
     if (getLives() > 0)
@@ -131,9 +126,16 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
 
 bool StudentWorld::objectAt(int x, int y) {
     for (Actor* actor : m_actors) {
-//        cerr << actor->x() << "," << actor->y() << endl;
         if (actor->isAt(x, y)) {
-//            cerr << "t" << endl;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool StudentWorld::obstacleAt(int x, int y) {
+    for (Actor* actor : m_actors) {
+        if (actor->isAt(x, y) && actor->blocksMovement()) {
             return true;
         }
     }
@@ -156,3 +158,10 @@ bool StudentWorld::objectBelow(int x, int y) {
     }
     return objectBelow;
 }
+
+bool StudentWorld::overlapsWithPeach(int x, int y) {
+    if (m_Peach->isAt(x, y))
+        return true;
+    return false;
+}
+

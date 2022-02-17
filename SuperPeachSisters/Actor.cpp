@@ -62,7 +62,7 @@ void Peach::doSomething() {
     
     if (remaining_jump_distance > 0) {
         target_y += 4;
-        if (world()->objectAt(target_x, target_y)) {
+        if (world()->obstacleAt(target_x, target_y)) {
             world()->bonkObjectsAt(target_x, target_y);
             remaining_jump_distance = 0;
         }
@@ -99,7 +99,7 @@ void Peach::doSomething() {
                         remaining_jump_distance = 12;
                     }
                     else {
-                        remaining_jump_distance = 8;
+                        remaining_jump_distance = 20; //TODO: change back to 8 in prod
                     }
                     world()->playSound(SOUND_PLAYER_JUMP);
                     return;
@@ -154,4 +154,12 @@ Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, II
 
 Flag::Flag(StudentWorld* StudentWorld, int startX, int startY) : Actor(StudentWorld, IID_FLAG, startX, startX) {}
 
-void Flag::doSomething() {}
+void Flag::doSomething() {
+    if (isAlive())
+        return;
+    if (world()->overlapsWithPeach(x(), y())) {
+        world()->increaseScore(1000);
+        toggleAlive();
+        world()->finishLevel();
+    }
+}

@@ -64,6 +64,9 @@ int StudentWorld::move()
     // Notice that the return value GWSTATUS_PLAYER_DIED will cause our framework to end the current level.
     
     m_Peach->doSomething();
+    for (Actor* actor : m_actors) {
+        actor->doSomething();
+    }
     return GWSTATUS_CONTINUE_GAME;
 }
 
@@ -93,7 +96,8 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             m_Peach = new Peach(this, x, y);
             break;
         case Level::flag:
-            cerr << "block at" << x << "," << y << endl;
+            cerr << "flag at " << x << "," << y << endl;
+            m_actors.push_back(new Flag(this, x, y));
             break;
         case Level::block:
             cerr << "block at " << x << "," << y << endl;

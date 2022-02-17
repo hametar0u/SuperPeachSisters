@@ -6,34 +6,6 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>03C45021-1DE0-4543-B68A-7B7A12069CBD</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogMajorGroupSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
-			<key>fileName</key>
-			<string>03C45021-1DE0-4543-B68A-7B7A12069CBD.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>signature</key>
-			<string>SuperPeachSisters-ccvlkwcctyoqasckkhktdmmuerhc</string>
-			<key>timeStartedRecording</key>
-			<real>666752856.27653599</real>
-			<key>timeStoppedRecording</key>
-			<real>666752857.78748405</real>
-			<key>title</key>
-			<string>Build target SuperPeachSisters</string>
-			<key>uniqueIdentifier</key>
-			<string>03C45021-1DE0-4543-B68A-7B7A12069CBD</string>
-		</dict>
 		<key>1B3CA9F2-617E-4DEB-A150-5EB4644F84EB</key>
 		<dict>
 			<key>className</key>
@@ -61,6 +33,34 @@
 			<string>Build target SuperPeachSisters</string>
 			<key>uniqueIdentifier</key>
 			<string>1B3CA9F2-617E-4DEB-A150-5EB4644F84EB</string>
+		</dict>
+		<key>9F046735-8AAA-4C2D-8377-4BD1842E73AF</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>9F046735-8AAA-4C2D-8377-4BD1842E73AF.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>SuperPeachSisters-ccvlkwcctyoqasckkhktdmmuerhc</string>
+			<key>timeStartedRecording</key>
+			<real>666757320.24121201</real>
+			<key>timeStoppedRecording</key>
+			<real>666757321.58957195</real>
+			<key>title</key>
+			<string>Build target SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>9F046735-8AAA-4C2D-8377-4BD1842E73AF</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>

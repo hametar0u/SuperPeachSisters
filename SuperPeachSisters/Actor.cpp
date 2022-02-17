@@ -99,7 +99,7 @@ void Peach::doSomething() {
                         remaining_jump_distance = 12;
                     }
                     else {
-                        remaining_jump_distance = 8;
+                        remaining_jump_distance = 24; //TODO: change back to 8
                     }
                     world()->playSound(SOUND_PLAYER_JUMP);
                     return;
@@ -151,7 +151,7 @@ Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, II
 
 //================================================== FLAGS ==================================================//
 
-Flag::Flag(StudentWorld* StudentWorld, int startX, int startY) : Actor(StudentWorld, IID_FLAG, startX, startY) {}
+Flag::Flag(StudentWorld* StudentWorld, int startX, int startY, int imageID) : Actor(StudentWorld, imageID, startX, startY) {}
 
 void Flag::doSomething() {
 //    if (isAlive()) //TODO: implement later? its in the spec but doesn't do much
@@ -169,7 +169,7 @@ void Flag::progressNext() {
 
 //MARIO
 
-Mario::Mario(StudentWorld* StudentWorld, int x, int y) : Flag(StudentWorld, x, y) {}
+Mario::Mario(StudentWorld* StudentWorld, int x, int y) : Flag(StudentWorld, x, y, IID_MARIO) {}
 
 void Mario::progressNext() {
     world()->endGame();

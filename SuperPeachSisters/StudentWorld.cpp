@@ -133,7 +133,8 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             m_actors.push_back(new Pipe(this, x, y));
             break;
         case Level::mario:
-            cerr << "block at" << x << "," << y << endl;
+//            cerr << "block at" << x << "," << y << endl;
+            m_actors.push_back(new Mario(this, x, y));
             break;
     }
 }

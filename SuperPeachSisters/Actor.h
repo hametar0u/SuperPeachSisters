@@ -93,7 +93,7 @@ public:
 
 class Flag : public Actor {
 public:
-    Flag(StudentWorld* StudentWorld, int startX, int startY);
+    Flag(StudentWorld* StudentWorld, int startX, int startY, int imageID = IID_FLAG);
     virtual ~Flag() {}
     
     void doSomething(); //??

@@ -84,8 +84,15 @@ public:
     virtual ~Pipe() {}
 };
 
+//================================================== FLAGS ==================================================//
 
-
+class Flag : public Actor {
+public:
+    Flag(StudentWorld* StudentWorld, int startX, int startY);
+    virtual ~Flag() {}
+    
+    void doSomething(); //??
+};
 
 
 #endif // ACTOR_H_

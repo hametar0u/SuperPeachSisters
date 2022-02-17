@@ -45,30 +45,33 @@ void Peach::doSomething() {
     if (m_hp <= 0)
         return;
     
-    int left = KEY_PRESS_LEFT; //copium solution; any other way??
-    int right = KEY_PRESS_RIGHT;
     int target_x = x();
     int target_y = y();
     
-    if (world()->getKey(left)) {
-        setDirection(180);
-        target_x -= 4;
+    int keyPress;
+    if (world()->getKey(keyPress)) {
+        if (keyPress == KEY_PRESS_LEFT) {
+            setDirection(180);
+            target_x -= 4;
+            
+        }
+        else if (keyPress == KEY_PRESS_RIGHT) {
+            setDirection(0);
+            target_x += 4;
+        }
         
-    }
-    else if (world()->getKey(right)) {
-        setDirection(0);
-        target_x += 4;
+        //TODO: check if object at destination position blocks movement
+        if (world()->objectAt(target_x, target_y)) {
+            world()->bonkObjectsAt(target_x, target_y);
+            return;
+        }
+        else {
+            moveTo(target_x, target_y);
+            setPos(target_x, target_y);
+        }
     }
     
-    //TODO: check if object at destination position blocks movement
-    if (world()->objectAt(target_x, target_y)) {
-        world()->bonkObjectsAt(target_x, target_y);
-        return;
-    }
-    else {
-        moveTo(target_x, target_y);
-        setPos(target_x, target_y);
-    }
+    
 }
 
 //================================================== OBSTACLE ==================================================//
@@ -88,3 +91,9 @@ void Block::getBonked() { return; } //TODO: release goodie
 //================================================== PIPE ==================================================//
 
 Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, IID_PIPE, x, y) {}
+
+//================================================== FLAGS ==================================================//
+
+Flag::Flag(StudentWorld* StudentWorld, int startX, int startY) : Actor(StudentWorld, IID_FLAG, startX, startX) {}
+
+void Flag::doSomething() {}

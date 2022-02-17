@@ -22,6 +22,7 @@ public:
     
     //helpers
     bool objectAt(int x, int y);
+    bool objectBelow(int x, int y);
     void bonkObjectsAt(int x, int y);
 
 private:

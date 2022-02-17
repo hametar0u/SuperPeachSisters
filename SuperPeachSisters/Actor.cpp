@@ -73,13 +73,8 @@ void Peach::doSomething() {
         }
     }
     else {
-        bool objectBelow = false;
-        for (int i = 1; i < 4; i++) {
-            if (world()->objectAt(target_x, target_y - i))
-                objectBelow = true;
-        }
-
-        if (!objectBelow) {
+        
+        if (!world()->objectBelow(target_x, target_y)) {
             target_y -= 4;
             moveTo(target_x, target_y);
             setPos(target_x, target_y);
@@ -99,14 +94,16 @@ void Peach::doSomething() {
                 target_x += 4;
                 break;
             case KEY_PRESS_UP:
-                if (m_powerups.find("JumpPower") != m_powerups.end()) {
-                    remaining_jump_distance = 12;
+                if (world()->objectBelow(target_x, target_y)) {
+                    if (m_powerups.find("JumpPower") != m_powerups.end()) {
+                        remaining_jump_distance = 12;
+                    }
+                    else {
+                        remaining_jump_distance = 8;
+                    }
+                    world()->playSound(SOUND_PLAYER_JUMP);
+                    return;
                 }
-                else {
-                    remaining_jump_distance = 8;
-                }
-                world()->playSound(SOUND_PLAYER_JUMP);
-                return;
                 break;
             case KEY_PRESS_SPACE:
                 if (m_powerups.find("ShootPower") != m_powerups.end() && time_to_recharge_before_next_fire <= 0) {

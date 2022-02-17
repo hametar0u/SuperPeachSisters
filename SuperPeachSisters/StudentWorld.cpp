@@ -147,3 +147,12 @@ void StudentWorld::bonkObjectsAt(int x, int y) {
         }
     }
 }
+
+bool StudentWorld::objectBelow(int x, int y) {
+    bool objectBelow = false;
+    for (int i = 1; i < 4; i++) {
+        if (objectAt(x, y - i))
+            objectBelow = true;
+    }
+    return objectBelow;
+}

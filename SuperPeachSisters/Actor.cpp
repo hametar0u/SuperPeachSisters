@@ -14,9 +14,8 @@ Actor::Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, in
 }
 
 bool Actor::isAt(int x, int y) {
-    return x >= m_x && x < m_x + SPRITE_WIDTH
-        && y >= m_y && y < m_y + SPRITE_HEIGHT;
-    
+    return min(m_x, x) + SPRITE_WIDTH > max(m_x, x)
+        && min(m_y, y) + SPRITE_HEIGHT > max(m_y, y);
 }
 
 void Actor::setX(int new_x) {

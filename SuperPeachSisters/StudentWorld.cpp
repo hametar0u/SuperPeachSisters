@@ -150,13 +150,13 @@ void StudentWorld::bonkObjectsAt(int x, int y) {
     }
 }
 
-bool StudentWorld::objectBelow(int x, int y) {
-    bool objectBelow = false;
+bool StudentWorld::obstacleBelow(int x, int y) {
+    bool obstacleBelow = false;
     for (int i = 1; i < 4; i++) {
-        if (objectAt(x, y - i))
-            objectBelow = true;
+        if (obstacleAt(x, y - i))
+            obstacleBelow = true;
     }
-    return objectBelow;
+    return obstacleBelow;
 }
 
 bool StudentWorld::overlapsWithPeach(int x, int y) {

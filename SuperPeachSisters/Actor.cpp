@@ -74,7 +74,7 @@ void Peach::doSomething() {
     }
     else {
         
-        if (!world()->objectBelow(target_x, target_y)) {
+        if (!world()->obstacleBelow(target_x, target_y)) {
             target_y -= 4;
             moveTo(target_x, target_y);
             setPos(target_x, target_y);
@@ -94,7 +94,7 @@ void Peach::doSomething() {
                 target_x += 4;
                 break;
             case KEY_PRESS_UP:
-                if (world()->objectBelow(target_x, target_y)) {
+                if (world()->obstacleBelow(target_x, target_y)) {
                     if (m_powerups.find("JumpPower") != m_powerups.end()) {
                         remaining_jump_distance = 12;
                     }
@@ -114,8 +114,7 @@ void Peach::doSomething() {
                 break;
         }
         
-        //TODO: check if object at destination position blocks movement
-        if (world()->objectAt(target_x, target_y)) {
+        if (world()->obstacleAt(target_x, target_y)) {
             world()->bonkObjectsAt(target_x, target_y);
             return;
         }
@@ -152,7 +151,7 @@ Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, II
 
 //================================================== FLAGS ==================================================//
 
-Flag::Flag(StudentWorld* StudentWorld, int startX, int startY) : Actor(StudentWorld, IID_FLAG, startX, startX) {}
+Flag::Flag(StudentWorld* StudentWorld, int startX, int startY) : Actor(StudentWorld, IID_FLAG, startX, startY) {}
 
 void Flag::doSomething() {
     if (isAlive())

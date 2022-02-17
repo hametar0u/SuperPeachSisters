@@ -67,7 +67,10 @@ int StudentWorld::move()
     for (Actor* actor : m_actors) {
         actor->doSomething();
     }
-    return GWSTATUS_CONTINUE_GAME;
+    
+    if (getLives() > 0)
+        return GWSTATUS_CONTINUE_GAME;
+    return GWSTATUS_PLAYER_DIED;
 }
 
 void StudentWorld::cleanUp()
@@ -138,7 +141,7 @@ bool StudentWorld::objectAt(int x, int y) {
 void StudentWorld::bonkObjectsAt(int x, int y) {
     for (Actor* actor : m_actors) {
         if (actor->isAt(x, y)) {
-            actor->getBonked();
+            actor->bonk();
         }
     }
 }

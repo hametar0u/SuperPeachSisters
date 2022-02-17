@@ -2,7 +2,7 @@
 #define ACTOR_H_
 
 #include "GraphObject.h"
-#include <vector>
+#include <set>
 
 // Students:  Add code to this file, Actor.cpp, StudentWorld.h, and StudentWorld.cpp
 class StudentWorld;
@@ -30,8 +30,8 @@ public:
     
     //other
     virtual void doSomething() = 0;
-    virtual void getBonked() { return; }
-    virtual void blockPath() { return; }
+    virtual void bonk() { return; }
+    virtual bool blocksMovement() { return false; }
     
 private:
     bool m_isAlive;
@@ -50,29 +50,34 @@ public:
     virtual ~Peach() {}
     
     virtual void doSomething();
+    virtual void bonk();
+    
 private:
     int m_hp;
-    bool m_invincible;
-    std::vector<std::string> m_powerups; //tbh there might be a fixed # of powerups so might be better to implement an array of bools
+    int remaining_invincibility;
+    int remaining_temporary_invincibility;
+    int remaining_jump_distance;
+    int time_to_recharge_before_next_fire;
+    std::set<std::string> m_powerups; //tbh there might be a fixed # of powerups so might be better to implement an array of bools
 };
+
+//================================================== OBSTACLES ==================================================//
 
 class Obstacle : public Actor {
 public:
     Obstacle(StudentWorld* StudentWorld, int imageID, int startX, int startY);
     virtual ~Obstacle() {}
     
-    virtual void blockPath();
+    virtual bool blocksMovement() { return true; }
     virtual void doSomething();
 };
-
-//================================================== OBSTACLES ==================================================//
 
 class Block : public Obstacle {
 public:
     Block(StudentWorld* StudentWorld, int x, int y);
     virtual ~Block() {}
     
-    virtual void getBonked();
+    virtual void bonk();
     //TODO: deal with the goodie stuff
 private:
     bool wasBonked;

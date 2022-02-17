@@ -37,27 +37,68 @@ void Actor::setPos(int new_x, int new_y) {
 
 Peach::Peach(StudentWorld* StudentWorld, int x, int y) : Actor(StudentWorld, IID_PEACH, x, y) {
     m_hp = 1;
-    m_invincible = false;
     m_powerups = {};
+    remaining_jump_distance = 0;
+    remaining_invincibility = 0;
+    remaining_temporary_invincibility = 0;
+    time_to_recharge_before_next_fire = 0;
 }
 
 void Peach::doSomething() {
-    if (m_hp <= 0)
+    if (!isAlive())
         return;
+    if (remaining_invincibility > 0) //instead of setting another variable to be T/F it's probably easier just to check if this variable > 0
+        remaining_invincibility--;
+    if (remaining_temporary_invincibility > 0)
+        remaining_temporary_invincibility--;
+    if (time_to_recharge_before_next_fire > 0)
+        time_to_recharge_before_next_fire--;
+    if (world()->objectAt(x(), y()))
+        world()->bonkObjectsAt(x(), y());
     
-    int target_x = x();
+    int target_x = x(); //TODO: this ordering might screw smt up later; come back to it
     int target_y = y();
+    
+    if (remaining_jump_distance > 0) {
+        target_y += 4;
+        if (world()->objectAt(target_x, target_y)) {
+            world()->bonkObjectsAt(target_x, target_y);
+            remaining_jump_distance = 0;
+        }
+        else {
+            moveTo(target_x, target_y);
+            remaining_jump_distance--;
+        }
+    }
     
     int keyPress;
     if (world()->getKey(keyPress)) {
-        if (keyPress == KEY_PRESS_LEFT) {
-            setDirection(180);
-            target_x -= 4;
-            
-        }
-        else if (keyPress == KEY_PRESS_RIGHT) {
-            setDirection(0);
-            target_x += 4;
+        switch(keyPress) {
+            case KEY_PRESS_LEFT:
+                setDirection(180);
+                target_x -= 4;
+                break;
+            case KEY_PRESS_RIGHT:
+                setDirection(0);
+                target_x += 4;
+                break;
+            case KEY_PRESS_UP:
+                if (m_powerups.find("JumpPower") != m_powerups.end()) {
+                    remaining_jump_distance = 12;
+                }
+                else {
+                    remaining_jump_distance = 8;
+                }
+                world()->playSound(SOUND_PLAYER_JUMP);
+                return;
+                break;
+            case KEY_PRESS_SPACE:
+                if (m_powerups.find("ShootPower") != m_powerups.end() && time_to_recharge_before_next_fire <= 0) {
+                    world()->playSound(SOUND_PLAYER_FIRE);
+                    time_to_recharge_before_next_fire = 8;
+                    //TODO: fireball implementation
+                }
+                break;
         }
         
         //TODO: check if object at destination position blocks movement
@@ -70,15 +111,19 @@ void Peach::doSomething() {
             setPos(target_x, target_y);
         }
     }
-    
-    
+}
+
+void Peach::bonk() {
+    m_hp--;
+    if (m_hp <= 0) {
+        world()->decLives();
+    }
 }
 
 //================================================== OBSTACLE ==================================================//
 
 Obstacle::Obstacle(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, 0, 2 /*default size*/) {}
 
-void Obstacle::blockPath() { return; } //TODO: actually block path
 void Obstacle::doSomething() { return; } //it's supposed to do nothing
 
 
@@ -86,7 +131,7 @@ void Obstacle::doSomething() { return; } //it's supposed to do nothing
 
 Block::Block(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, IID_BLOCK, x, y), wasBonked(false) {}
 
-void Block::getBonked() { return; } //TODO: release goodie
+void Block::bonk() { return; } //TODO: release goodie
 
 //================================================== PIPE ==================================================//
 

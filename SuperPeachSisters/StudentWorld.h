@@ -14,10 +14,11 @@ using namespace std;
 class StudentWorld : public GameWorld
 {
 public:
-  StudentWorld(std::string assetPath);
-  virtual int init();
-  virtual int move();
-  virtual void cleanUp();
+    StudentWorld(std::string assetPath);
+    virtual int init();
+    virtual int move();
+    virtual void cleanUp();
+    virtual ~StudentWorld() { cleanUp(); }
     
     //helpers
     bool objectAt(int x, int y);

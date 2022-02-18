@@ -113,16 +113,19 @@ public:
 
 class Goodie : public Actor {
 public:
-    Goodie(StudentWorld* StudentWorld, int imageID, int x, int y);
+    Goodie(StudentWorld* StudentWorld, int imageID, std::string buff, int x, int y);
     virtual ~Goodie() {}
     
     virtual void doSomething();
-    void setBuff(std::string buff) { m_buff = buff; }
     
 private:
     std::string m_buff;
 };
 
-class Flower : public Goodie {};
+class Flower : public Goodie {
+public:
+    Flower(StudentWorld* StudentWorld, int x, int y);
+    virtual ~Flower() {}
+};
 
 #endif // ACTOR_H_

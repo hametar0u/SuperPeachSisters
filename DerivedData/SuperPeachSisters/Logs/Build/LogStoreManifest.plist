@@ -2760,6 +2760,40 @@
 			<key>uniqueIdentifier</key>
 			<string>B8E5AB52-AAA4-46E1-9978-9063D590625A</string>
 		</dict>
+		<key>BA67524C-D6A0-472F-99C5-A479B8B76DEB</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>BA67524C-D6A0-472F-99C5-A479B8B76DEB.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>666901804.06701803</real>
+			<key>timeStoppedRecording</key>
+			<real>666901804.12548304</real>
+			<key>title</key>
+			<string>Build SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>BA67524C-D6A0-472F-99C5-A479B8B76DEB</string>
+		</dict>
 		<key>BAFEF212-DC88-4403-85A5-E57D95E7228A</key>
 		<dict>
 			<key>className</key>
@@ -3235,6 +3269,40 @@
 			<string>Build SuperPeachSisters</string>
 			<key>uniqueIdentifier</key>
 			<string>D84EAD32-3A46-459D-B512-816C4B1A1352</string>
+		</dict>
+		<key>D8D0E91C-C2FB-485A-8A11-1B0D28AC8720</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D8D0E91C-C2FB-485A-8A11-1B0D28AC8720.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>666901650.52801502</real>
+			<key>timeStoppedRecording</key>
+			<real>666901653.26904094</real>
+			<key>title</key>
+			<string>Build SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>D8D0E91C-C2FB-485A-8A11-1B0D28AC8720</string>
 		</dict>
 		<key>D9EB7F1C-C4BB-4C58-AFB2-6B94CD4B8330</key>
 		<dict>

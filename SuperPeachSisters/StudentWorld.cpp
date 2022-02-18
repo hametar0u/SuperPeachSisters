@@ -126,7 +126,7 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::flower_goodie_block:
-            cerr << "block at" << x << "," << y << endl;
+            cerr << "flower block" << x << "," << y << endl;
             break;
         case Level::pipe:
 //            cerr << "pipe at " << x << "," << y << endl;

@@ -167,7 +167,9 @@ void Mario::progressNext() {
 
 //================================================== GOODIES ==================================================//
 
-Goodie::Goodie(StudentWorld* StudentWorld, int imageID, int x, int y) : Actor(StudentWorld, imageID, x, y) {}
+Goodie::Goodie(StudentWorld* StudentWorld, int imageID, string buff, int x, int y) : Actor(StudentWorld, imageID, x, y) {
+    m_buff = buff;
+}
 
 void Goodie::doSomething() {
     if (world()->overlapsWithPeach(x(), y())) {
@@ -197,3 +199,9 @@ void Goodie::doSomething() {
         
     }
 }
+
+//================================================== FLOWER ==================================================//
+
+Flower::Flower(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_FLOWER, "ShootPower", x, y) {}
+
+

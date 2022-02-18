@@ -157,10 +157,43 @@ void Flag::progressNext() {
     world()->finishLevel();
 }
 
-//MARIO
+//================================================== MARIO ==================================================//
 
 Mario::Mario(StudentWorld* StudentWorld, int x, int y) : Flag(StudentWorld, x, y, IID_MARIO) {}
 
 void Mario::progressNext() {
     world()->endGame();
+}
+
+//================================================== GOODIES ==================================================//
+
+Goodie::Goodie(StudentWorld* StudentWorld, int imageID, int x, int y) : Actor(StudentWorld, imageID, x, y) {}
+
+void Goodie::doSomething() {
+    if (world()->overlapsWithPeach(x(), y())) {
+        world()->increaseScore(50);
+        world()->buffPeach(m_buff);
+        toggleAlive();
+        world()->playSound(SOUND_PLAYER_POWERUP);
+        return;
+    }
+    else {
+        int target_x = x();
+        int target_y = y() - 2;
+        if (!world()->obstacleAt(target_x, target_y)) {
+            moveTo(target_x, target_y); //TODO: make setPos call moveTo
+            setPos(target_x, target_y);
+        }
+        
+        int currentDirection = getDirection();
+        (currentDirection == 0) ? target_x += 2 : target_x -= 2;
+        if (world()->obstacleAt(target_x, target_y)) {
+            (currentDirection == 0) ? setDirection(180) : setDirection(0);
+        }
+        else {
+            moveTo(target_x, target_y);
+            setPos(target_x, target_y);
+        }
+        
+    }
 }

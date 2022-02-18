@@ -26,6 +26,9 @@ public:
     bool obstacleBelow(int x, int y) const;
     void bonkObjectsAt(int x, int y);
     bool overlapsWithPeach(int x, int y) const;
+    
+    void buffPeach(std::string buff);
+    
     void finishLevel() { level_finished = true; }
     void endGame() { game_finished = true; }
 

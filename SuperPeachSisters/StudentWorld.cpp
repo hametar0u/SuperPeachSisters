@@ -180,3 +180,6 @@ bool StudentWorld::overlapsWithPeach(int x, int y) const {
     return false;
 }
 
+void StudentWorld::buffPeach(string buff) {
+    m_Peach->addBuff(buff);
+}

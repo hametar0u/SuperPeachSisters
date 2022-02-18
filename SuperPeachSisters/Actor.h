@@ -50,6 +50,8 @@ public:
     virtual void doSomething();
     virtual void bonk();
     
+    void addBuff(std::string buff) { m_powerups.insert(buff); }
+    
 private:
     int m_hp;
     int remaining_invincibility;
@@ -106,5 +108,21 @@ public:
     virtual void progressNext();
     
 };
+
+//================================================== GOODIES ==================================================//
+
+class Goodie : public Actor {
+public:
+    Goodie(StudentWorld* StudentWorld, int imageID, int x, int y);
+    virtual ~Goodie() {}
+    
+    virtual void doSomething();
+    void setBuff(std::string buff) { m_buff = buff; }
+    
+private:
+    std::string m_buff;
+};
+
+class Flower : public Goodie {};
 
 #endif // ACTOR_H_

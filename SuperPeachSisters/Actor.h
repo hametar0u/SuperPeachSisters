@@ -13,19 +13,17 @@ public:
     virtual ~Actor() {}
     
     //predicates
-    bool isAlive() { return m_isAlive; }
-    bool isAt(int x, int y);
+    bool isAlive() const { return m_isAlive; }
+    bool isAt(int x, int y) const;
     
     //getters
     StudentWorld* world() { return m_StudentWorld; }
     
-    int x() { return m_x; }
-    int y() { return m_y; }
+    int x() const { return m_x; }
+    int y() const { return m_y; }
     
     //setters
     void toggleAlive() { m_isAlive = !m_isAlive; }
-    void setX(int new_x); // TODO: remove these if we don't need them
-    void setY(int new_y);
     void setPos(int new_x, int new_y);
     
     //other

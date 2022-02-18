@@ -13,19 +13,9 @@ Actor::Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, in
     m_y = startY;
 }
 
-bool Actor::isAt(int x, int y) {
+bool Actor::isAt(int x, int y) const {
     return min(m_x, x) + SPRITE_WIDTH > max(m_x, x)
         && min(m_y, y) + SPRITE_HEIGHT > max(m_y, y);
-}
-
-void Actor::setX(int new_x) {
-    //TODO: bound checking?
-    m_x = new_x;
-}
-
-void Actor::setY(int new_y) {
-    //TODO: bound checking?
-    m_y = new_y;
 }
 
 void Actor::setPos(int new_x, int new_y) {

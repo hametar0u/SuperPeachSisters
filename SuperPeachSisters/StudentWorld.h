@@ -21,11 +21,11 @@ public:
     virtual ~StudentWorld() { cleanUp(); }
     
     //helpers
-    bool objectAt(int x, int y);
-    bool obstacleAt(int x, int y);
-    bool obstacleBelow(int x, int y);
+    bool objectAt(int x, int y) const;
+    bool obstacleAt(int x, int y) const;
+    bool obstacleBelow(int x, int y) const;
     void bonkObjectsAt(int x, int y);
-    bool overlapsWithPeach(int x, int y);
+    bool overlapsWithPeach(int x, int y) const;
     void finishLevel() { level_finished = true; }
     void endGame() { game_finished = true; }
 

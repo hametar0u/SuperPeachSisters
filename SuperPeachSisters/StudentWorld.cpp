@@ -139,7 +139,7 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
     }
 }
 
-bool StudentWorld::objectAt(int x, int y) {
+bool StudentWorld::objectAt(int x, int y) const {
     for (Actor* actor : m_actors) {
         if (actor->isAt(x, y)) {
             return true;
@@ -148,7 +148,7 @@ bool StudentWorld::objectAt(int x, int y) {
     return false;
 }
 
-bool StudentWorld::obstacleAt(int x, int y) {
+bool StudentWorld::obstacleAt(int x, int y) const {
     for (Actor* actor : m_actors) {
         if (actor->isAt(x, y) && actor->blocksMovement()) {
             return true;
@@ -165,7 +165,7 @@ void StudentWorld::bonkObjectsAt(int x, int y) {
     }
 }
 
-bool StudentWorld::obstacleBelow(int x, int y) {
+bool StudentWorld::obstacleBelow(int x, int y) const {
     bool obstacleBelow = false;
     for (int i = 1; i < 4; i++) {
         if (obstacleAt(x, y - i))
@@ -174,7 +174,7 @@ bool StudentWorld::obstacleBelow(int x, int y) {
     return obstacleBelow;
 }
 
-bool StudentWorld::overlapsWithPeach(int x, int y) {
+bool StudentWorld::overlapsWithPeach(int x, int y) const {
     if (m_Peach->isAt(x, y))
         return true;
     return false;

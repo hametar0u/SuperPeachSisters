@@ -61,34 +61,6 @@ private:
     std::set<std::string> m_powerups; //tbh there might be a fixed # of powerups so might be better to implement an array of bools
 };
 
-//================================================== OBSTACLES ==================================================//
-
-class Obstacle : public Actor {
-public:
-    Obstacle(StudentWorld* StudentWorld, int imageID, int startX, int startY);
-    virtual ~Obstacle() {}
-    
-    virtual bool blocksMovement() { return true; }
-    virtual void doSomething();
-};
-
-class Block : public Obstacle {
-public:
-    Block(StudentWorld* StudentWorld, int x, int y);
-    virtual ~Block() {}
-    
-    virtual void bonk();
-    //TODO: deal with the goodie stuff
-private:
-    bool wasBonked;
-};
-
-class Pipe : public Obstacle {
-public:
-    Pipe(StudentWorld* StudentWorld, int x, int y);
-    virtual ~Pipe() {}
-};
-
 //================================================== FLAGS ==================================================//
 
 class Flag : public Actor {
@@ -126,6 +98,39 @@ class Flower : public Goodie {
 public:
     Flower(StudentWorld* StudentWorld, int x, int y);
     virtual ~Flower() {}
+};
+
+//================================================== OBSTACLES ==================================================//
+
+class Obstacle : public Actor {
+public:
+    Obstacle(StudentWorld* StudentWorld, int imageID, int startX, int startY);
+    virtual ~Obstacle() {}
+    
+    virtual bool blocksMovement() { return true; }
+    virtual void doSomething();
+};
+
+class Block : public Obstacle {
+public:
+    Block(StudentWorld* StudentWorld, int x, int y, int goodieID = -1);
+    virtual ~Block() {}
+    
+    //goodies
+    bool hasGoodie() const;
+    void releaseGoodie();
+    
+    virtual void bonk();
+    //TODO: deal with the goodie stuff
+private:
+    bool wasBonked;
+    Goodie* m_goodie;
+};
+
+class Pipe : public Obstacle {
+public:
+    Pipe(StudentWorld* StudentWorld, int x, int y);
+    virtual ~Pipe() {}
 };
 
 #endif // ACTOR_H_

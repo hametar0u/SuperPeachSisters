@@ -89,7 +89,7 @@ void Peach::doSomething() {
                         remaining_jump_distance = 12;
                     }
                     else {
-                        remaining_jump_distance = 24; //TODO: change back to 8
+                        remaining_jump_distance = 64; //TODO: change back to 8
                     }
                     world()->playSound(SOUND_PLAYER_JUMP);
                     return;
@@ -131,7 +131,16 @@ void Obstacle::doSomething() { return; } //it's supposed to do nothing
 
 //================================================== BLOCK ==================================================//
 
-Block::Block(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, IID_BLOCK, x, y), wasBonked(false) {}
+Block::Block(StudentWorld* StudentWorld, int x, int y, int goodieID) : Obstacle(StudentWorld, IID_BLOCK, x, y), wasBonked(false) {
+    switch (goodieID) {
+        case IID_FLOWER:
+            m_goodie = new Flower(StudentWorld, x, y); //TODO: construct goodie only after block gets bonked
+            break;
+        default:
+            m_goodie = nullptr;
+            break;
+    }
+}
 
 void Block::bonk() { return; } //TODO: release goodie
 
@@ -167,7 +176,7 @@ void Mario::progressNext() {
 
 //================================================== GOODIES ==================================================//
 
-Goodie::Goodie(StudentWorld* StudentWorld, int imageID, string buff, int x, int y) : Actor(StudentWorld, imageID, x, y) {
+Goodie::Goodie(StudentWorld* StudentWorld, int imageID, string buff, int x, int y) : Actor(StudentWorld, imageID, x, y) { //TODO: set graphical depth to 1
     m_buff = buff;
 }
 
@@ -203,5 +212,3 @@ void Goodie::doSomething() {
 //================================================== FLOWER ==================================================//
 
 Flower::Flower(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_FLOWER, "ShootPower", x, y) {}
-
-

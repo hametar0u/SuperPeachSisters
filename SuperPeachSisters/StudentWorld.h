@@ -29,6 +29,10 @@ public:
     
     void buffPeach(std::string buff);
     
+    //actor manipulation
+    void createActor(int typeOfActor, int x, int y);
+    //note: to delete an actor, just iterate through m_actors on each cycle, check alive/death status, and delete accordingly
+    
     void finishLevel() { level_finished = true; }
     void endGame() { game_finished = true; }
 

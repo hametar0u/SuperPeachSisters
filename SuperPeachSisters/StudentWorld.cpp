@@ -114,7 +114,7 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
         case Level::block:
 //            cerr << "block at " << x << "," << y << endl;
             m_actors.push_back(new Block(this, x, y));
-//            m_coordmap[x][y] = new Block(this, x, y);
+            
             break;
         case Level::star_goodie_block:
             cerr << "block at" << x << "," << y << endl;
@@ -126,7 +126,8 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::flower_goodie_block:
-            cerr << "flower block" << x << "," << y << endl;
+//            cerr << "flower block" << x << "," << y << endl;
+            m_actors.push_back(new Block(this, x, y, IID_FLOWER));
             break;
         case Level::pipe:
 //            cerr << "pipe at " << x << "," << y << endl;
@@ -182,4 +183,13 @@ bool StudentWorld::overlapsWithPeach(int x, int y) const {
 
 void StudentWorld::buffPeach(string buff) {
     m_Peach->addBuff(buff);
+}
+
+void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this should mostly be used for powerups but I'll keep it general for now
+    switch (typeOfActor) {
+        case IID_FLOWER:
+            m_actors.push_back(new Flower(this, x, y));
+            break;
+            //TODO: add the other goodies
+    }
 }

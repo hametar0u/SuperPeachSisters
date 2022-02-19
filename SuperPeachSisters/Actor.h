@@ -117,14 +117,12 @@ public:
     virtual ~Block() {}
     
     //goodies
-    bool hasGoodie() const;
+    bool hasGoodie() const { return m_goodieID != -1; };
     void releaseGoodie();
     
     virtual void bonk();
-    //TODO: deal with the goodie stuff
 private:
-    bool wasBonked;
-    Goodie* m_goodie;
+    int m_goodieID;
 };
 
 class Pipe : public Obstacle {

@@ -131,18 +131,29 @@ void Obstacle::doSomething() { return; } //it's supposed to do nothing
 
 //================================================== BLOCK ==================================================//
 
-Block::Block(StudentWorld* StudentWorld, int x, int y, int goodieID) : Obstacle(StudentWorld, IID_BLOCK, x, y), wasBonked(false) {
-    switch (goodieID) {
-        case IID_FLOWER:
-            m_goodie = new Flower(StudentWorld, x, y); //TODO: construct goodie only after block gets bonked
-            break;
-        default:
-            m_goodie = nullptr;
-            break;
-    }
+Block::Block(StudentWorld* StudentWorld, int x, int y, int goodieID) : Obstacle(StudentWorld, IID_BLOCK, x, y) {
+    m_goodieID = goodieID;
 }
 
-void Block::bonk() { return; } //TODO: release goodie
+void Block::bonk() {
+    if (hasGoodie()) {
+        world()->playSound(SOUND_POWERUP_APPEARS);
+        releaseGoodie();
+    }
+    else {
+        world()->playSound(SOUND_PLAYER_BONK);
+    }
+
+}
+void Block::releaseGoodie() {
+    switch (m_goodieID) {
+        case IID_FLOWER:
+            world()->createActor(IID_FLOWER, x(), y()+8);
+            break;
+    }
+    
+    m_goodieID = -1;
+} //TODO: release goodie
 
 //================================================== PIPE ==================================================//
 

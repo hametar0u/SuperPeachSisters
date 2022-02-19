@@ -189,6 +189,7 @@ void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this sho
     switch (typeOfActor) {
         case IID_FLOWER:
             m_actors.push_back(new Flower(this, x, y));
+            cerr << "created flower at: " << x << "," << y << endl;
             break;
             //TODO: add the other goodies
     }

@@ -51,6 +51,7 @@ public:
     virtual void bonk();
     
     void addBuff(std::string buff) { m_powerups.insert(buff); }
+    void setHealth(int amt) { m_hp = amt; }
     
 private:
     int m_hp;
@@ -82,22 +83,35 @@ public:
 };
 
 //================================================== GOODIES ==================================================//
+enum GoodieType { flower, mushroom, star, none };
 
 class Goodie : public Actor {
 public:
-    Goodie(StudentWorld* StudentWorld, int imageID, std::string buff, int x, int y);
+    Goodie(StudentWorld* StudentWorld, int imageID, GoodieType goodie, int x, int y);
     virtual ~Goodie() {}
     
     virtual void doSomething();
     
 private:
-    std::string m_buff;
+    GoodieType m_goodie;
 };
 
 class Flower : public Goodie {
 public:
     Flower(StudentWorld* StudentWorld, int x, int y);
     virtual ~Flower() {}
+};
+
+class Mushroom : public Goodie {
+public:
+    Mushroom(StudentWorld* StudentWorld, int x, int y);
+    virtual ~Mushroom() {}
+};
+
+class Star : public Goodie {
+public:
+    Star(StudentWorld* StudentWorld, int x, int y);
+    virtual ~Star() {}
 };
 
 //================================================== OBSTACLES ==================================================//
@@ -113,16 +127,16 @@ public:
 
 class Block : public Obstacle {
 public:
-    Block(StudentWorld* StudentWorld, int x, int y, int goodieID = -1);
+    Block(StudentWorld* StudentWorld, int x, int y, GoodieType goodie);
     virtual ~Block() {}
     
     //goodies
-    bool hasGoodie() const { return m_goodieID != -1; };
+    bool hasGoodie() const { return m_goodie != none; };
     void releaseGoodie();
     
     virtual void bonk();
 private:
-    int m_goodieID;
+    GoodieType m_goodie;
 };
 
 class Pipe : public Obstacle {

@@ -27,7 +27,9 @@ public:
     void bonkObjectsAt(int x, int y);
     bool overlapsWithPeach(int x, int y) const;
     
+    //peach functions
     void buffPeach(std::string buff);
+    void setPeachHealth(int amt);
     
     //actor manipulation
     void createActor(int typeOfActor, int x, int y);

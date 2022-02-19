@@ -185,6 +185,10 @@ void StudentWorld::buffPeach(string buff) {
     m_Peach->addBuff(buff);
 }
 
+void StudentWorld::setPeachHealth(int amt) {
+    m_Peach->setHealth(2);
+}
+
 void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this should mostly be used for powerups but I'll keep it general for now
     switch (typeOfActor) {
         case IID_FLOWER:

@@ -20,6 +20,7 @@ bool Actor::isAt(int x, int y) const {
 
 void Actor::setPos(int new_x, int new_y) {
     //TODO: bound checking
+    moveTo(new_x, new_y);
     m_x = new_x;
     m_y = new_y;
 }
@@ -57,7 +58,6 @@ void Peach::doSomething() {
             remaining_jump_distance = 0;
         }
         else {
-            moveTo(target_x, target_y);
             setPos(target_x, target_y);
             remaining_jump_distance--;
         }
@@ -66,7 +66,6 @@ void Peach::doSomething() {
         
         if (!world()->obstacleBelow(target_x, target_y)) {
             target_y -= 4;
-            moveTo(target_x, target_y);
             setPos(target_x, target_y);
         }
 
@@ -109,7 +108,6 @@ void Peach::doSomething() {
             return;
         }
         else {
-            moveTo(target_x, target_y);
             setPos(target_x, target_y);
         }
     }
@@ -131,8 +129,8 @@ void Obstacle::doSomething() { return; } //it's supposed to do nothing
 
 //================================================== BLOCK ==================================================//
 
-Block::Block(StudentWorld* StudentWorld, int x, int y, int goodieID) : Obstacle(StudentWorld, IID_BLOCK, x, y) {
-    m_goodieID = goodieID;
+Block::Block(StudentWorld* StudentWorld, int x, int y, GoodieType goodie) : Obstacle(StudentWorld, IID_BLOCK, x, y) {
+    m_goodie = goodie;
 }
 
 void Block::bonk() {
@@ -146,14 +144,18 @@ void Block::bonk() {
 
 }
 void Block::releaseGoodie() {
-    switch (m_goodieID) {
-        case IID_FLOWER:
+    switch (m_goodie) {
+        case flower:
             world()->createActor(IID_FLOWER, x(), y()+8);
             break;
+        case mushroom:
+            world()->createActor(IID_MUSHROOM, x(), y()+8);
+            break;
+        case star:
     }
     
-    m_goodieID = -1;
-} //TODO: release goodie
+    m_goodie = none;
+}
 
 //================================================== PIPE ==================================================//
 
@@ -187,14 +189,35 @@ void Mario::progressNext() {
 
 //================================================== GOODIES ==================================================//
 
-Goodie::Goodie(StudentWorld* StudentWorld, int imageID, string buff, int x, int y) : Actor(StudentWorld, imageID, x, y) { //TODO: set graphical depth to 1
-    m_buff = buff;
+Goodie::Goodie(StudentWorld* StudentWorld, int imageID, GoodieType goodie, int x, int y) : Actor(StudentWorld, imageID, x, y, 0, 1) {
+    m_goodie = goodie;
 }
 
 void Goodie::doSomething() {
     if (world()->overlapsWithPeach(x(), y())) {
-        world()->increaseScore(50);
-        world()->buffPeach(m_buff);
+        string buff;
+        int points;
+        switch (m_goodie) {
+            case flower:
+                buff = "ShootPower";
+                points = 50;
+                break;
+            case mushroom:
+                buff = "JumpPower";
+                points = 75;
+                break;
+            case star:
+                buff = "StarPower";
+                points = 100;
+                break;
+            default: //failsafe
+                buff = "";
+                points = 0;
+                break;
+        }
+        
+        world()->increaseScore(points);
+        world()->buffPeach(buff);
         toggleAlive();
         world()->playSound(SOUND_PLAYER_POWERUP);
         return;
@@ -203,23 +226,26 @@ void Goodie::doSomething() {
         int target_x = x();
         int target_y = y() - 2;
         if (!world()->obstacleAt(target_x, target_y)) {
-            moveTo(target_x, target_y); //TODO: make setPos call moveTo
             setPos(target_x, target_y);
-        }
-        
-        int currentDirection = getDirection();
-        (currentDirection == 0) ? target_x += 2 : target_x -= 2;
-        if (world()->obstacleAt(target_x, target_y)) {
-            (currentDirection == 0) ? setDirection(180) : setDirection(0);
         }
         else {
-            moveTo(target_x, target_y);
-            setPos(target_x, target_y);
+            target_y = y();
+            int currentDirection = getDirection();
+            (currentDirection == 0) ? target_x += 2 : target_x -= 2;
+            if (world()->obstacleAt(target_x, target_y)) {
+                (currentDirection == 0) ? setDirection(180) : setDirection(0);
+            }
+            else {
+                setPos(target_x, target_y);
+            }
         }
-        
     }
 }
 
-//================================================== FLOWER ==================================================//
+//================================================== GOODIE VARIATIONS ==================================================//
 
-Flower::Flower(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_FLOWER, "ShootPower", x, y) {}
+Flower::Flower(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_FLOWER, flower, x, y) {}
+
+Mushroom::Mushroom(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_MUSHROOM, mushroom, x, y) {}
+
+Star::Star(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_STAR, star, x, y) {}

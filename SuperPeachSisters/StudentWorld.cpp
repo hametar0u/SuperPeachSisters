@@ -113,21 +113,23 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             break;
         case Level::block:
 //            cerr << "block at " << x << "," << y << endl;
-            m_actors.push_back(new Block(this, x, y));
+            m_actors.push_back(new Block(this, x, y, none));
             
             break;
         case Level::star_goodie_block:
-            cerr << "block at" << x << "," << y << endl;
+//            cerr << "star block at" << x << "," << y << endl;
+            m_actors.push_back(new Block(this, x, y, star));
             break;
         case Level::piranha:
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::mushroom_goodie_block:
-            cerr << "block at" << x << "," << y << endl;
+//            cerr << "block at" << x << "," << y << endl;
+            m_actors.push_back(new Block(this, x, y, mushroom));
             break;
         case Level::flower_goodie_block:
 //            cerr << "flower block" << x << "," << y << endl;
-            m_actors.push_back(new Block(this, x, y, IID_FLOWER));
+            m_actors.push_back(new Block(this, x, y, flower));
             break;
         case Level::pipe:
 //            cerr << "pipe at " << x << "," << y << endl;

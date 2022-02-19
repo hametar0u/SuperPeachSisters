@@ -144,14 +144,20 @@ void Block::bonk() {
 
 }
 void Block::releaseGoodie() {
+    int target_x = x();
+    int target_y = y() + 8;
     switch (m_goodie) {
         case flower:
-            world()->createActor(IID_FLOWER, x(), y()+8);
+            world()->createActor(IID_FLOWER, target_x, target_y);
             break;
         case mushroom:
-            world()->createActor(IID_MUSHROOM, x(), y()+8);
+            world()->createActor(IID_MUSHROOM, target_x, target_y);
             break;
         case star:
+            world()->createActor(IID_STAR, target_x, target_y);
+            break;
+        case none:
+            break;
     }
     
     m_goodie = none;

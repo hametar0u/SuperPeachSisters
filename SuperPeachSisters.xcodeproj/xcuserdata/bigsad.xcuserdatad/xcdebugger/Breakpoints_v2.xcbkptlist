@@ -46,8 +46,8 @@
             filePath = "SuperPeachSisters/StudentWorld.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "StudentWorld::objectAt(x, y)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "SuperPeachSisters/Actor.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "Flag::doSomething()"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "SuperPeachSisters/Actor.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -129,6 +129,22 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "Peach::doSomething()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3124CC7-0F1F-42FD-B368-DBE54E1586D2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuperPeachSisters/StudentWorld.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "StudentWorld::cleanUp()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

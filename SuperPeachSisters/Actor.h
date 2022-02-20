@@ -50,6 +50,7 @@ public:
     virtual void doSomething();
     virtual void bonk();
     
+    bool hasBuff(std::string buff);
     void addBuff(std::string buff) { m_powerups.insert(buff); }
     void setHealth(int amt) { m_hp = amt; }
     

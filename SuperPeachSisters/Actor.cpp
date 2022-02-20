@@ -120,6 +120,14 @@ void Peach::bonk() {
     }
 }
 
+bool Peach::hasBuff(string buff) {
+    for (string powerup : m_powerups) {
+        if (powerup == buff)
+            return true;
+    }
+    return false;
+}
+
 //================================================== OBSTACLE ==================================================//
 
 Obstacle::Obstacle(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, 0, 2 /*default size*/) {}

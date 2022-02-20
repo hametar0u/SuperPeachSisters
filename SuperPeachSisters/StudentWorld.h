@@ -4,7 +4,7 @@
 #include "GameWorld.h"
 #include "Level.h"
 #include "Actor.h"
-#include <vector>
+#include <list>
 #include <string>
 #include <map>
 using namespace std;
@@ -41,7 +41,7 @@ public:
 private:
     void displayObjectAt(Level::GridEntry ge, int x, int y);
     
-    std::vector<Actor*> m_actors;
+    list<Actor*> m_actors;
     Peach* m_Peach;
     
     bool level_finished; //TODO: come back to these

@@ -63,6 +63,14 @@ int StudentWorld::move()
         actor->doSomething();
     }
     
+    if (m_Peach->hasBuff("StarPower"))
+        setGameStatText("StarPower");
+    if (m_Peach->hasBuff("ShootPower"))
+        setGameStatText("ShootPower");
+    if (m_Peach->hasBuff("JumpPower"))
+        setGameStatText("JumpPower");
+    
+    
     if (level_finished) {
         playSound(SOUND_FINISHED_LEVEL);
         return GWSTATUS_FINISHED_LEVEL;
@@ -79,13 +87,15 @@ int StudentWorld::move()
 
 void StudentWorld::cleanUp()
 {
-    for (Actor* actor : m_actors) {
-        delete actor;
+    list<Actor*>::iterator it = m_actors.begin();
+    while (it != m_actors.end()) {
+        delete *it;
+        m_actors.erase(it);
+        it = m_actors.begin();
     }
-    delete m_Peach;
     
+    delete m_Peach;
     m_Peach = nullptr;
-    m_actors.resize(0); //is this allowed lol
     
     level_finished = false;
 }
@@ -109,35 +119,35 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             break;
         case Level::flag:
 //            cerr << "flag at " << x << "," << y << endl;
-            m_actors.push_back(new Flag(this, x, y));
+            m_actors.push_front(new Flag(this, x, y));
             break;
         case Level::block:
 //            cerr << "block at " << x << "," << y << endl;
-            m_actors.push_back(new Block(this, x, y, none));
+            m_actors.push_front(new Block(this, x, y, none));
             
             break;
         case Level::star_goodie_block:
 //            cerr << "star block at" << x << "," << y << endl;
-            m_actors.push_back(new Block(this, x, y, star));
+            m_actors.push_front(new Block(this, x, y, star));
             break;
         case Level::piranha:
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::mushroom_goodie_block:
 //            cerr << "block at" << x << "," << y << endl;
-            m_actors.push_back(new Block(this, x, y, mushroom));
+            m_actors.push_front(new Block(this, x, y, mushroom));
             break;
         case Level::flower_goodie_block:
 //            cerr << "flower block" << x << "," << y << endl;
-            m_actors.push_back(new Block(this, x, y, flower));
+            m_actors.push_front(new Block(this, x, y, flower));
             break;
         case Level::pipe:
 //            cerr << "pipe at " << x << "," << y << endl;
-            m_actors.push_back(new Pipe(this, x, y));
+            m_actors.push_front(new Pipe(this, x, y));
             break;
         case Level::mario:
 //            cerr << "block at" << x << "," << y << endl;
-            m_actors.push_back(new Mario(this, x, y));
+            m_actors.push_front(new Mario(this, x, y));
             break;
     }
 }
@@ -194,7 +204,7 @@ void StudentWorld::setPeachHealth(int amt) {
 void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this should mostly be used for powerups but I'll keep it general for now
     switch (typeOfActor) {
         case IID_FLOWER:
-            m_actors.push_back(new Flower(this, x, y));
+            m_actors.push_front(new Flower(this, x, y));
             cerr << "created flower at: " << x << "," << y << endl;
             break;
             //TODO: add the other goodies

@@ -108,6 +108,40 @@
 			<key>uniqueIdentifier</key>
 			<string>3FBD4C2D-20D1-48E7-9206-5860F657CD4E</string>
 		</dict>
+		<key>4912F145-0476-4AAA-ACD9-075C9B4A5540</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>4912F145-0476-4AAA-ACD9-075C9B4A5540.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667070074.78644395</real>
+			<key>timeStoppedRecording</key>
+			<real>667070101.32986498</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>4912F145-0476-4AAA-ACD9-075C9B4A5540</string>
+		</dict>
 		<key>4A5E6797-9EF2-4FC0-9FF3-5B6E148DA94B</key>
 		<dict>
 			<key>className</key>
@@ -278,6 +312,40 @@
 			<key>uniqueIdentifier</key>
 			<string>626DE22C-BFED-4413-892A-A06497ECB2A4</string>
 		</dict>
+		<key>7C70EBB6-CB86-4501-AB5B-45DEAAFD8279</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>7C70EBB6-CB86-4501-AB5B-45DEAAFD8279.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667069731.76180196</real>
+			<key>timeStoppedRecording</key>
+			<real>667069738.601915</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>7C70EBB6-CB86-4501-AB5B-45DEAAFD8279</string>
+		</dict>
 		<key>9659C071-209A-458F-AA3F-D430D8A93A0C</key>
 		<dict>
 			<key>className</key>
@@ -379,6 +447,40 @@
 			<string>Run SuperPeachSisters</string>
 			<key>uniqueIdentifier</key>
 			<string>A2C42830-1A8F-4DA7-AFAC-B8F2BAE0D5B2</string>
+		</dict>
+		<key>A3296E53-9DC5-40D0-9FF9-75564276D9B6</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>A3296E53-9DC5-40D0-9FF9-75564276D9B6.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667069946.84018397</real>
+			<key>timeStoppedRecording</key>
+			<real>667070073.35712302</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>A3296E53-9DC5-40D0-9FF9-75564276D9B6</string>
 		</dict>
 		<key>A5DDD26D-B781-4982-96F5-B9011D4D97F6</key>
 		<dict>

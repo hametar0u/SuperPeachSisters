@@ -70,6 +70,19 @@ int StudentWorld::move()
     if (m_Peach->hasBuff("JumpPower"))
         setGameStatText("JumpPower");
     
+    //delete dead actors
+    list<Actor*>::iterator it = m_actors.begin();
+    while (it != m_actors.end()) {
+        if (!(*it)->isAlive()) {
+            list<Actor*>::iterator killMe = it;
+            it++;
+            delete *killMe;
+            m_actors.erase(killMe);
+        }
+        else {
+            it++;
+        }
+    }
     
     if (level_finished) {
         playSound(SOUND_FINISHED_LEVEL);
@@ -87,12 +100,7 @@ int StudentWorld::move()
 
 void StudentWorld::cleanUp()
 {
-    list<Actor*>::iterator it = m_actors.begin();
-    while (it != m_actors.end()) {
-        delete *it;
-        m_actors.erase(it);
-        it = m_actors.begin();
-    }
+    m_actors.erase(m_actors.begin(), m_actors.end());
     
     delete m_Peach;
     m_Peach = nullptr;

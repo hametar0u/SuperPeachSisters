@@ -121,11 +121,7 @@ void Peach::bonk() {
 }
 
 bool Peach::hasBuff(string buff) {
-    for (string powerup : m_powerups) {
-        if (powerup == buff)
-            return true;
-    }
-    return false;
+    return m_powerups.find(buff) != m_powerups.end() ? true : false;
 }
 
 //================================================== OBSTACLE ==================================================//

@@ -65,9 +65,9 @@ int StudentWorld::move()
     
     if (m_Peach->hasBuff("StarPower"))
         setGameStatText("StarPower");
-    if (m_Peach->hasBuff("ShootPower"))
+    else if (m_Peach->hasBuff("ShootPower"))
         setGameStatText("ShootPower");
-    if (m_Peach->hasBuff("JumpPower"))
+    else if (m_Peach->hasBuff("JumpPower"))
         setGameStatText("JumpPower");
     
     //delete dead actors

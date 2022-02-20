@@ -100,7 +100,12 @@ int StudentWorld::move()
 
 void StudentWorld::cleanUp()
 {
-    m_actors.erase(m_actors.begin(), m_actors.end());
+    list<Actor*>::iterator it = m_actors.begin();
+    while (it != m_actors.end()) {
+        delete *it;
+        m_actors.erase(it);
+        it = m_actors.begin();
+    }
     
     delete m_Peach;
     m_Peach = nullptr;
@@ -214,6 +219,14 @@ void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this sho
         case IID_FLOWER:
             m_actors.push_front(new Flower(this, x, y));
             cerr << "created flower at: " << x << "," << y << endl;
+            break;
+        case IID_MUSHROOM:
+            m_actors.push_front(new Mushroom(this, x, y));
+            cerr << "created mushroom at: " << x << "," << y << endl;
+            break;
+        case IID_STAR:
+            m_actors.push_front(new Star(this, x, y));
+            cerr << "created star at: " << x << "," << y << endl;
             break;
             //TODO: add the other goodies
     }

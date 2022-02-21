@@ -236,6 +236,5 @@ void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this sho
             m_actors.push_front(new Star(this, x, y));
             cerr << "created star at: " << x << "," << y << endl;
             break;
-            //TODO: add the other goodies
     }
 }

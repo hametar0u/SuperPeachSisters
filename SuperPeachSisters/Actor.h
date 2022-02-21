@@ -19,9 +19,6 @@ public:
     //getters
     StudentWorld* world() { return m_StudentWorld; }
     
-    int x() const { return m_x; }
-    int y() const { return m_y; }
-    
     //setters
     void toggleAlive() { m_isAlive = !m_isAlive; }
     void setPos(int new_x, int new_y);
@@ -35,9 +32,6 @@ private:
     bool m_isAlive;
     StudentWorld* m_StudentWorld;
     
-    //position of actor
-    int m_x;
-    int m_y;
 };
 
 //================================================== PEACH ==================================================//

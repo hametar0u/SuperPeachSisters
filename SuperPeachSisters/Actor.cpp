@@ -9,20 +9,16 @@ Actor::Actor(StudentWorld* StudentWorld, int imageID, int startX, int startY, in
 : GraphObject(imageID, startX, startY, startDirection, depth, size) {
     m_isAlive = true;
     m_StudentWorld = StudentWorld;
-    m_x = startX;
-    m_y = startY;
+    moveTo(startX, startY);
 }
 
 bool Actor::isAt(int x, int y) const {
-    return min(m_x, x) + SPRITE_WIDTH > max(m_x, x)
-        && min(m_y, y) + SPRITE_HEIGHT > max(m_y, y);
+    return min(getX(), static_cast<double>(x)) + SPRITE_WIDTH > max(getX(), static_cast<double>(x))
+        && min(getY(), static_cast<double>(y)) + SPRITE_HEIGHT > max(getY(), static_cast<double>(y));
 }
 
 void Actor::setPos(int new_x, int new_y) {
-    //TODO: bound checking
     moveTo(new_x, new_y);
-    m_x = new_x;
-    m_y = new_y;
 }
 
 //================================================== PEACH ==================================================//
@@ -50,11 +46,11 @@ void Peach::doSomething() {
         remaining_temporary_invincibility--;
     if (time_to_recharge_before_next_fire > 0)
         time_to_recharge_before_next_fire--;
-    if (world()->objectAt(x(), y()))
-        world()->bonkObjectsAt(x(), y());
+    if (world()->objectAt(getX(), getY()))
+        world()->bonkObjectsAt(getX(), getY());
     
-    int target_x = x();
-    int target_y = y();
+    int target_x = getX();
+    int target_y = getY();
     
     if (remaining_jump_distance > 0) {
         target_y += 4;
@@ -153,8 +149,8 @@ void Block::bonk() {
 
 }
 void Block::releaseGoodie() {
-    int target_x = x();
-    int target_y = y() + 8;
+    int target_x = getX();
+    int target_y = getY() + 8;
     switch (m_goodie) {
         case flower:
             world()->createActor(IID_FLOWER, target_x, target_y);
@@ -183,7 +179,7 @@ Flag::Flag(StudentWorld* StudentWorld, int startX, int startY, int imageID) : Ac
 void Flag::doSomething() {
     if (!isAlive())
         return;
-    if (world()->overlapsWithPeach(x(), y())) {
+    if (world()->overlapsWithPeach(getX(), getY())) {
         world()->increaseScore(1000);
         toggleAlive();
         progressNext();
@@ -209,7 +205,7 @@ Goodie::Goodie(StudentWorld* StudentWorld, int imageID, GoodieType goodie, int x
 }
 
 void Goodie::doSomething() {
-    if (world()->overlapsWithPeach(x(), y())) {
+    if (world()->overlapsWithPeach(getX(), getY())) {
         string buff;
         int points;
         switch (m_goodie) {
@@ -238,13 +234,13 @@ void Goodie::doSomething() {
         return;
     }
     else {
-        int target_x = x();
-        int target_y = y() - 2;
+        int target_x = getX();
+        int target_y = getY() - 2;
         if (!world()->obstacleAt(target_x, target_y)) {
             setPos(target_x, target_y);
         }
         else {
-            target_y = y();
+            target_y = getY();
             int currentDirection = getDirection();
             (currentDirection == 0) ? target_x += 2 : target_x -= 2;
             if (world()->obstacleAt(target_x, target_y)) {

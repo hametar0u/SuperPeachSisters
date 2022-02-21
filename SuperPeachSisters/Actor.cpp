@@ -259,7 +259,7 @@ Star::Star(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_
 
 //================================================== ENEMIES ==================================================//
 
-Enemy::Enemy(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, rand()%2) {}
+Enemy::Enemy(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, (rand()%2 == 0) ? 0 : 180) {}
 
 void Enemy::doSomething() {
     if (!isAlive())
@@ -277,7 +277,10 @@ void Enemy::doSomething() {
     if (world()->obstacleAt(target_x, target_y))
         (currentDirection == 0) ? setDirection(180) : setDirection(0);
     
-    target_y -= SPRITE_HEIGHT; //determine if theres a block one pixel in the direction of enemy and one block down
+    //determine if theres a block one pixel in the direction of enemy and one block down
+    target_x = getX();
+    (currentDirection == 0) ? target_x += SPRITE_WIDTH : target_x -= SPRITE_WIDTH;
+    target_y -= SPRITE_HEIGHT;
     
     if (!world()->obstacleAt(target_x, target_y))
         (currentDirection == 0) ? setDirection(180) : setDirection(0);

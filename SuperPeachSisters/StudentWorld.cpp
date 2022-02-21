@@ -63,12 +63,20 @@ int StudentWorld::move()
         actor->doSomething();
     }
     
+    //game status text
+    ostringstream oss;
+    oss << " Lives: " << getLives();
+    oss << " Level: " << getLevel();
+    oss << " Points: " << getScore();
     if (m_Peach->hasBuff("StarPower"))
-        setGameStatText("StarPower");
-    else if (m_Peach->hasBuff("ShootPower"))
-        setGameStatText("ShootPower");
-    else if (m_Peach->hasBuff("JumpPower"))
-        setGameStatText("JumpPower");
+        oss << " StarPower! ";
+    if (m_Peach->hasBuff("ShootPower"))
+        oss << " ShootPower! ";
+    if (m_Peach->hasBuff("JumpPower"))
+        oss << " JumpPower! ";
+    
+    setGameStatText(oss.str());
+    
     
     //delete dead actors
     list<Actor*>::iterator it = m_actors.begin();

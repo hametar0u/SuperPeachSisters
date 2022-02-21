@@ -41,6 +41,11 @@ void Peach::doSomething() {
         return;
     if (remaining_invincibility > 0) //instead of setting another variable to be T/F it's probably easier just to check if this variable > 0
         remaining_invincibility--;
+    if (hasBuff("StarPower")) {
+        remaining_invincibility = 300;
+        m_powerups.erase(m_powerups.find("StarPower")); //TODO: starpower doesn't show up on game status
+    }
+        
     if (remaining_temporary_invincibility > 0)
         remaining_temporary_invincibility--;
     if (time_to_recharge_before_next_fire > 0)
@@ -48,7 +53,7 @@ void Peach::doSomething() {
     if (world()->objectAt(x(), y()))
         world()->bonkObjectsAt(x(), y());
     
-    int target_x = x(); //TODO: this ordering might screw smt up later; come back to it
+    int target_x = x();
     int target_y = y();
     
     if (remaining_jump_distance > 0) {
@@ -176,8 +181,8 @@ Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, II
 Flag::Flag(StudentWorld* StudentWorld, int startX, int startY, int imageID) : Actor(StudentWorld, imageID, startX, startY) {}
 
 void Flag::doSomething() {
-//    if (isAlive()) //TODO: implement later? its in the spec but doesn't do much
-//        return;
+    if (!isAlive())
+        return;
     if (world()->overlapsWithPeach(x(), y())) {
         world()->increaseScore(1000);
         toggleAlive();

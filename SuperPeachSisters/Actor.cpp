@@ -17,10 +17,6 @@ bool Actor::isAt(int x, int y) const {
         && min(getY(), static_cast<double>(y)) + SPRITE_HEIGHT > max(getY(), static_cast<double>(y));
 }
 
-void Actor::setPos(int new_x, int new_y) {
-    moveTo(new_x, new_y);
-}
-
 //================================================== PEACH ==================================================//
 
 Peach::Peach(StudentWorld* StudentWorld, int x, int y) : Actor(StudentWorld, IID_PEACH, x, y) {
@@ -59,7 +55,7 @@ void Peach::doSomething() {
             remaining_jump_distance = 0;
         }
         else {
-            setPos(target_x, target_y);
+            moveTo(target_x, target_y);
             remaining_jump_distance--;
         }
     }
@@ -67,7 +63,7 @@ void Peach::doSomething() {
         
         if (!world()->obstacleBelow(target_x, target_y)) {
             target_y -= 4;
-            setPos(target_x, target_y);
+            moveTo(target_x, target_y);
         }
 
     }
@@ -109,12 +105,12 @@ void Peach::doSomething() {
             return;
         }
         else {
-            setPos(target_x, target_y);
+            moveTo(target_x, target_y);
         }
     }
 }
 
-void Peach::bonk() {
+void Peach::bonk() { //TODO: interactions with enemies
     m_hp--;
     if (m_hp <= 0) {
         world()->decLives();
@@ -237,7 +233,7 @@ void Goodie::doSomething() {
         int target_x = getX();
         int target_y = getY() - 2;
         if (!world()->obstacleAt(target_x, target_y)) {
-            setPos(target_x, target_y);
+            moveTo(target_x, target_y);
         }
         else {
             target_y = getY();
@@ -247,7 +243,7 @@ void Goodie::doSomething() {
                 (currentDirection == 0) ? setDirection(180) : setDirection(0);
             }
             else {
-                setPos(target_x, target_y);
+                moveTo(target_x, target_y);
             }
         }
     }
@@ -260,3 +256,46 @@ Flower::Flower(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, 
 Mushroom::Mushroom(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_MUSHROOM, mushroom, x, y) {}
 
 Star::Star(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_STAR, star, x, y) {}
+
+//================================================== ENEMIES ==================================================//
+
+Enemy::Enemy(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, rand()%2) {}
+
+void Enemy::doSomething() {
+    if (!isAlive())
+        return;
+    if (world()->overlapsWithPeach(getX(), getY())) {
+        world()->bonkPeach();
+        return;
+    }
+    
+    int currentDirection = getDirection();
+    int target_x = getX();
+    int target_y = getY();
+    (currentDirection == 0) ? target_x += 1 : target_x -= 1;
+    
+    if (world()->obstacleAt(target_x, target_y))
+        (currentDirection == 0) ? setDirection(180) : setDirection(0);
+    
+    target_y -= SPRITE_HEIGHT; //determine if theres a block one pixel in the direction of enemy and one block down
+    
+    if (!world()->obstacleAt(target_x, target_y))
+        (currentDirection == 0) ? setDirection(180) : setDirection(0);
+    
+    currentDirection = getDirection();
+    target_x = getX();
+    target_y = getY();
+    (currentDirection == 0) ? target_x += 1 : target_x -= 1;
+    if (world()->obstacleAt(target_x, target_y))
+        return;
+    
+    moveTo(target_x, target_y);
+}
+
+void Enemy::bonk() {
+    
+}
+
+Goomba::Goomba(StudentWorld* StudentWorld, int startX, int startY) : Enemy(StudentWorld, IID_GOOMBA, startX, startY) {}
+
+Koopa::Koopa(StudentWorld* StudentWorld, int startX, int startY) : Enemy(StudentWorld, IID_KOOPA, startX, startY) {}

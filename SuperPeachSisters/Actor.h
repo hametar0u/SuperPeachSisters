@@ -2,7 +2,8 @@
 #define ACTOR_H_
 
 #include "GraphObject.h"
-#include <set>
+#include <iostream>
+using namespace std;
 
 // Students:  Add code to this file, Actor.cpp, StudentWorld.h, and StudentWorld.cpp
 class StudentWorld;
@@ -139,5 +140,29 @@ public:
     Pipe(StudentWorld* StudentWorld, int x, int y);
     virtual ~Pipe() {}
 };
+
+//================================================== ENEMIES ==================================================//
+
+class Enemy : public Actor {
+public:
+    Enemy(StudentWorld* StudentWorld, int imageID, int startX, int startY);
+    virtual ~Enemy() {}
+    
+    virtual void doSomething();
+    virtual void bonk();
+};
+
+class Goomba : public Enemy {
+public:
+    Goomba(StudentWorld* StudentWorld, int startX, int startY);
+    virtual ~Goomba() { cerr << "destroying goomba" << endl; }
+};
+
+class Koopa : public Enemy {
+public:
+    Koopa(StudentWorld* StudentWorld, int startX, int startY);
+    virtual ~Koopa() { cerr << "destroying koopa" << endl; }
+};
+
 
 #endif // ACTOR_H_

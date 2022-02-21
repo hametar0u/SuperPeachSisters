@@ -92,6 +92,9 @@ int StudentWorld::move()
         }
     }
     
+    if (getLives() <= 0)
+        return GWSTATUS_PLAYER_DIED;
+    
     if (level_finished) {
         playSound(SOUND_FINISHED_LEVEL);
         return GWSTATUS_FINISHED_LEVEL;
@@ -101,9 +104,7 @@ int StudentWorld::move()
         return GWSTATUS_PLAYER_WON;
     }
     
-    if (getLives() > 0)
-        return GWSTATUS_CONTINUE_GAME;
-    return GWSTATUS_PLAYER_DIED;
+    return GWSTATUS_CONTINUE_GAME;
 }
 
 void StudentWorld::cleanUp()
@@ -129,10 +130,12 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             cerr << "block at" << x << "," << y << endl;
             break;
         case Level::koopa:
-            cerr << "block at" << x << "," << y << endl;
+//            cerr << "koopa at " << x << "," << y << endl;
+            m_actors.push_back(new Koopa(this, x, y));
             break;
         case Level::goomba:
-            cerr << "block at" << x << "," << y << endl;
+//            cerr << "goomba at " << x << "," << y << endl;
+            m_actors.push_back(new Goomba(this, x, y));
             break;
         case Level::peach:
 //            cerr << "peach at " << x << "," << y << endl;

@@ -309,17 +309,18 @@ void Enemy::doSomething() {
 
 void Enemy::bonk() {
     //TODO: if bonker is not peach, ignore
+    //てかその必要もないじゃん
     if (world()->peachIsInvincible()) {
-        getDamaged();
+        damage();
     }
 }
 
-void Enemy::getDamaged() {
+void Enemy::damage() {
     world()->playSound(SOUND_PLAYER_KICK);
     world()->increaseScore(100);
     toggleAlive();
 }
 
-Goomba::Goomba(StudentWorld* StudentWorld, int startX, int startY) : Enemy(StudentWorld, IID_GOOMBA, startX, startY) {}
+Goomba::Goomba(StudentWorld* StudentWorld, int startX, int startY, int imageID) : Enemy(StudentWorld, imageID, startX, startY) {}
 
-Koopa::Koopa(StudentWorld* StudentWorld, int startX, int startY) : Enemy(StudentWorld, IID_KOOPA, startX, startY) {}
+Koopa::Koopa(StudentWorld* StudentWorld, int startX, int startY) : Goomba(StudentWorld, startX, startY, IID_KOOPA) {}

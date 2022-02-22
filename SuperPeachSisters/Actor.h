@@ -27,6 +27,7 @@ public:
     //other
     virtual void doSomething() = 0;
     virtual void bonk() { return; }
+    virtual void damage() { return; }
     virtual bool blocksMovement() { return false; }
     
 private:
@@ -44,6 +45,7 @@ public:
     
     virtual void doSomething();
     virtual void bonk();
+    virtual void damage() { bonk(); }
     
     bool hasBuff(std::string buff);
     void addBuff(std::string buff) { m_powerups.insert(buff); }
@@ -65,7 +67,7 @@ public:
     Flag(StudentWorld* StudentWorld, int startX, int startY, int imageID = IID_FLAG);
     virtual ~Flag() {}
     
-    void doSomething(); //??
+    virtual void doSomething();
     virtual void progressNext();
 };
 
@@ -150,20 +152,27 @@ public:
     
     virtual void doSomething();
     virtual void bonk();
-    void getDamaged(); //TODO: is probably a virtual function in actor
+    virtual void damage();
 };
 
 class Goomba : public Enemy {
 public:
-    Goomba(StudentWorld* StudentWorld, int startX, int startY);
+    Goomba(StudentWorld* StudentWorld, int startX, int startY, int imageID = IID_GOOMBA);
     virtual ~Goomba() { cerr << "destroying goomba" << endl; }
 };
 
-class Koopa : public Enemy {
+class Koopa : public Goomba {
 public:
     Koopa(StudentWorld* StudentWorld, int startX, int startY);
     virtual ~Koopa() { cerr << "destroying koopa" << endl; }
 };
 
+class Piranha : public Enemy {
+public:
+    Piranha(StudentWorld* StudentWorld, int startX, int startY);
+    virtual ~Piranha() { cerr << "destroying piranha" << endl; }
+    
+    virtual void doSomething();
+};
 
 #endif // ACTOR_H_

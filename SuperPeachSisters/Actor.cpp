@@ -110,10 +110,21 @@ void Peach::doSomething() {
     }
 }
 
-void Peach::bonk() { //TODO: interactions with enemies
+void Peach::bonk() {
+    if (remaining_invincibility > 0 || remaining_temporary_invincibility > 0)
+        return;
+    
     m_hp--;
+    remaining_temporary_invincibility = 10;
+    if (hasBuff("ShootPower"))
+        m_powerups.erase("ShootPower");
+    if (hasBuff("JumpPower"))
+        m_powerups.erase("JumpPower");
+    if (m_hp > 0)
+        world()->playSound(SOUND_PLAYER_HURT);
     if (m_hp <= 0) {
         world()->decLives();
+        toggleAlive();
     }
 }
 
@@ -225,6 +236,7 @@ void Goodie::doSomething() {
         
         world()->increaseScore(points);
         world()->buffPeach(buff);
+        world()->setPeachHealth(2);
         toggleAlive();
         world()->playSound(SOUND_PLAYER_POWERUP);
         return;
@@ -296,7 +308,16 @@ void Enemy::doSomething() {
 }
 
 void Enemy::bonk() {
-    
+    //TODO: if bonker is not peach, ignore
+    if (world()->peachIsInvincible()) {
+        getDamaged();
+    }
+}
+
+void Enemy::getDamaged() {
+    world()->playSound(SOUND_PLAYER_KICK);
+    world()->increaseScore(100);
+    toggleAlive();
 }
 
 Goomba::Goomba(StudentWorld* StudentWorld, int startX, int startY) : Enemy(StudentWorld, IID_GOOMBA, startX, startY) {}

@@ -150,6 +150,7 @@ public:
     
     virtual void doSomething();
     virtual void bonk();
+    void getDamaged(); //TODO: is probably a virtual function in actor
 };
 
 class Goomba : public Enemy {

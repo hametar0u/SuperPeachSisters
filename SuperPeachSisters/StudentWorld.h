@@ -28,6 +28,8 @@ public:
     bool overlapsWithPeach(int x, int y) const;
     
     //peach functions
+    bool peachIsInvincible() { return m_Peach->hasBuff("StarPower"); }
+    
     void bonkPeach() { m_Peach->bonk(); }
     void buffPeach(std::string buff);
     void setPeachHealth(int amt);

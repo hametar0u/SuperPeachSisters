@@ -92,8 +92,11 @@ int StudentWorld::move()
         }
     }
     
-    if (getLives() <= 0)
+    if (!m_Peach->isAlive()) {
+        playSound(SOUND_PLAYER_DIE);
         return GWSTATUS_PLAYER_DIED;
+    }
+        
     
     if (level_finished) {
         playSound(SOUND_FINISHED_LEVEL);

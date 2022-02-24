@@ -134,11 +134,11 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             break;
         case Level::koopa:
 //            cerr << "koopa at " << x << "," << y << endl;
-            m_actors.push_back(new Koopa(this, x, y));
+            m_actors.push_front(new Koopa(this, x, y));
             break;
         case Level::goomba:
 //            cerr << "goomba at " << x << "," << y << endl;
-            m_actors.push_back(new Goomba(this, x, y));
+            m_actors.push_front(new Goomba(this, x, y));
             break;
         case Level::peach:
 //            cerr << "peach at " << x << "," << y << endl;
@@ -158,7 +158,8 @@ void StudentWorld::displayObjectAt(Level::GridEntry ge, int x, int y) {
             m_actors.push_front(new Block(this, x, y, star));
             break;
         case Level::piranha:
-            cerr << "block at" << x << "," << y << endl;
+//            cerr << "piranha at " << x << "," << y << endl;
+            m_actors.push_front(new Piranha(this, x, y));
             break;
         case Level::mushroom_goodie_block:
 //            cerr << "block at" << x << "," << y << endl;
@@ -188,6 +189,15 @@ bool StudentWorld::objectAt(int x, int y) const {
     return false;
 }
 
+bool StudentWorld::damageableObjectAt(int x, int y) const {
+    for (Actor* actor : m_actors) {
+        if (actor->isAt(x, y) && actor->isDamageable()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool StudentWorld::obstacleAt(int x, int y) const {
     for (Actor* actor : m_actors) {
         if (actor->isAt(x, y) && actor->blocksMovement()) {
@@ -197,21 +207,12 @@ bool StudentWorld::obstacleAt(int x, int y) const {
     return false;
 }
 
-void StudentWorld::bonkObjectsAt(int x, int y) {
+void StudentWorld::bonkObjectsAt(int x, int y) const {
     for (Actor* actor : m_actors) {
         if (actor->isAt(x, y)) {
             actor->bonk();
         }
     }
-}
-
-bool StudentWorld::obstacleBelow(int x, int y) const {
-    bool obstacleBelow = false;
-    for (int i = 1; i < 4; i++) {
-        if (obstacleAt(x, y - i))
-            obstacleBelow = true;
-    }
-    return obstacleBelow;
 }
 
 bool StudentWorld::overlapsWithPeach(int x, int y) const {
@@ -226,6 +227,20 @@ void StudentWorld::buffPeach(string buff) {
 
 void StudentWorld::setPeachHealth(int amt) {
     m_Peach->setHealth(2);
+}
+
+bool StudentWorld::onSameLevelAsPeach(int x, int y, bool& onLeft) {
+    onLeft = m_Peach->getX() < x ? true : false;
+    
+    int peach_y = m_Peach->getY();
+    if (peach_y > (y - 1.5*SPRITE_HEIGHT) && peach_y < (y + 1.5*SPRITE_HEIGHT))
+        return true;
+    return false;
+}
+
+bool StudentWorld::peachInRange(int x) const {
+    int peach_x = m_Peach->getX();
+    return peach_x > x - 8*SPRITE_WIDTH && peach_x < x + 8*SPRITE_WIDTH;
 }
 
 void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this should mostly be used for powerups but I'll keep it general for now

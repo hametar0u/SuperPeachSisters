@@ -16,6 +16,7 @@ public:
     //predicates
     bool isAlive() const { return m_isAlive; }
     bool isAt(int x, int y) const;
+    virtual bool isDamageable() const { return false; }
     
     //getters
     StudentWorld* world() { return m_StudentWorld; }
@@ -42,6 +43,8 @@ class Peach : public Actor {
 public:
     Peach(StudentWorld* StudentWorld, int x, int y);
     virtual ~Peach() {}
+    
+    virtual bool isDamageable() const { return true; }
     
     virtual void doSomething();
     virtual void bonk();
@@ -150,6 +153,8 @@ public:
     Enemy(StudentWorld* StudentWorld, int imageID, int startX, int startY);
     virtual ~Enemy() {}
     
+    virtual bool isDamageable() const { return true; }
+    
     virtual void doSomething();
     virtual void bonk();
     virtual void damage();
@@ -173,6 +178,40 @@ public:
     virtual ~Piranha() { cerr << "destroying piranha" << endl; }
     
     virtual void doSomething();
+    
+private:
+    int m_firing_delay;
 };
+
+//================================================== PROJECTILES ==================================================//
+
+class Projectile : public Actor {
+public:
+    Projectile(StudentWorld* StudentWorld, int imageID, int x, int y, int startDirection);
+    virtual ~Projectile() {}
+    
+    virtual void doSomething();
+    
+};
+
+//TODO: implement
+class PiranhaFire : public Projectile {
+public:
+    PiranhaFire(StudentWorld* StudentWorld, int x, int y, int startDirection);
+    virtual ~PiranhaFire() { cerr << "destroying piranhafire " << endl; }
+    
+};
+
+class PeachFire : public Projectile {
+public:
+    PeachFire(StudentWorld* StudentWorld, int x, int y, int startDirection);
+    virtual ~PeachFire() { cerr << "destroying peachfire " << endl; }
+};
+class Shell : public Projectile {
+public:
+    Shell(StudentWorld* StudentWorld, int x, int y, int startDirection);
+    virtual ~Shell() { cerr << "destroying shell " << endl; }
+};
+
 
 #endif // ACTOR_H_

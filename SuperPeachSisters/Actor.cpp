@@ -61,7 +61,7 @@ void Peach::doSomething() {
     }
     else {
         
-        if (!world()->obstacleBelow(target_x, target_y)) {
+        if (!world()->obstacleAt(target_x, target_y - 4)) {
             target_y -= 4;
             moveTo(target_x, target_y);
         }
@@ -80,7 +80,7 @@ void Peach::doSomething() {
                 target_x += 4;
                 break;
             case KEY_PRESS_UP:
-                if (world()->obstacleBelow(target_x, target_y)) {
+                if (world()->obstacleAt(target_x, target_y - 3)) {
                     if (m_powerups.find("JumpPower") != m_powerups.end()) {
                         remaining_jump_distance = 12;
                     }
@@ -324,3 +324,62 @@ void Enemy::damage() {
 Goomba::Goomba(StudentWorld* StudentWorld, int startX, int startY, int imageID) : Enemy(StudentWorld, imageID, startX, startY) {}
 
 Koopa::Koopa(StudentWorld* StudentWorld, int startX, int startY) : Goomba(StudentWorld, startX, startY, IID_KOOPA) {}
+
+Piranha::Piranha(StudentWorld* StudentWorld, int startX, int startY) : Enemy(StudentWorld, IID_PIRANHA, startX, startY) {
+    m_firing_delay = 0;
+}
+
+void Piranha::doSomething() {
+    if (!isAlive())
+        return;
+    increaseAnimationNumber();
+    
+    if (world()->overlapsWithPeach(getX(), getY())) {
+        world()->bonkPeach();
+        return;
+    }
+    
+    bool onLeft;
+    if (!world()->onSameLevelAsPeach(getX(), getY(), onLeft))
+        return;
+    onLeft == true ? setDirection(180) : setDirection(0);
+    
+    if (m_firing_delay > 0) {
+        m_firing_delay--;
+        return;
+    }
+    if (world()->peachInRange(getX())) {
+        //TODO: shoot a fireball
+        world()->playSound(SOUND_PIRANHA_FIRE);
+        m_firing_delay = 40;
+    }
+}
+
+//================================================== PROJECTILES ==================================================//
+
+Projectile::Projectile(StudentWorld* StudentWorld, int imageID, int x, int y, int startDirection) : Actor(StudentWorld, imageID, x, y, startDirection, 1) {}
+
+void Projectile::doSomething() {
+    if (world()->overlapsWithPeach(getX(), getY())) {
+        world()->bonkPeach(); //TODO: should be damage??
+        toggleAlive();
+        return;
+    }
+    
+    int target_x = getX();
+    int target_y = getY() - 2;
+    if (!world()->obstacleAt(target_x, target_y)) {
+        moveTo(target_x, target_y);
+    }
+    
+    (getDirection() == 0) ? target_x += 2 : target_x -= 2;
+    target_y = getY();
+    
+    if (world()->obstacleAt(target_x, target_y)) {
+        toggleAlive();
+        return;
+    }
+    else {
+        moveTo(target_x, target_y);
+    }
+}

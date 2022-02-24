@@ -22,10 +22,12 @@ public:
     
     //helpers
     bool objectAt(int x, int y) const;
+    bool damageableObjectAt(int x, int y) const;
     bool obstacleAt(int x, int y) const;
-    bool obstacleBelow(int x, int y) const;
-    void bonkObjectsAt(int x, int y);
+    void bonkObjectsAt(int x, int y) const;
     bool overlapsWithPeach(int x, int y) const;
+    bool onSameLevelAsPeach(int x, int y, bool& onLeft);
+    bool peachInRange(int x) const;
     
     //peach functions
     bool peachIsInvincible() { return m_Peach->hasBuff("StarPower"); }

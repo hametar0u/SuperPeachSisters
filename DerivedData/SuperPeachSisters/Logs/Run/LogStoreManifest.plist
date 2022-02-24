@@ -74,6 +74,40 @@
 			<key>uniqueIdentifier</key>
 			<string>3C4B4482-BC5B-4AF3-B41A-830C82DFD22D</string>
 		</dict>
+		<key>4F6FCB03-B317-4D80-9C8A-A8844E88DC83</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>4F6FCB03-B317-4D80-9C8A-A8844E88DC83.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667360579.92938805</real>
+			<key>timeStoppedRecording</key>
+			<real>667360616.19339204</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>4F6FCB03-B317-4D80-9C8A-A8844E88DC83</string>
+		</dict>
 		<key>64BB899F-BA49-4EC4-8062-A4ADB9EE266D</key>
 		<dict>
 			<key>className</key>
@@ -141,6 +175,40 @@
 			<string>Run SuperPeachSisters</string>
 			<key>uniqueIdentifier</key>
 			<string>66B75630-F8EA-451C-AB6D-3ADA9544F940</string>
+		</dict>
+		<key>715F4A6F-9949-4C48-997F-D866F352EE40</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>715F4A6F-9949-4C48-997F-D866F352EE40.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667361371.92734301</real>
+			<key>timeStoppedRecording</key>
+			<real>667361412.05419195</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>715F4A6F-9949-4C48-997F-D866F352EE40</string>
 		</dict>
 		<key>7C573B48-61D3-4B70-88BE-1D99C6274BD2</key>
 		<dict>
@@ -243,6 +311,40 @@
 			<string>Run SuperPeachSisters</string>
 			<key>uniqueIdentifier</key>
 			<string>C9849281-9D7D-4481-9234-C824B9B0C712</string>
+		</dict>
+		<key>C9F33523-538F-4238-9847-7624DAD4EF15</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>C9F33523-538F-4238-9847-7624DAD4EF15.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667360798.25879502</real>
+			<key>timeStoppedRecording</key>
+			<real>667360840.15446198</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>C9F33523-538F-4238-9847-7624DAD4EF15</string>
 		</dict>
 		<key>CC4A4B40-8406-4FBE-9933-DB3BAC89E8BD</key>
 		<dict>

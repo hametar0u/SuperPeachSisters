@@ -215,6 +215,14 @@ void StudentWorld::bonkObjectsAt(int x, int y) const {
     }
 }
 
+void StudentWorld::damageObjectsAt(int x, int y) const {
+    for (Actor* actor : m_actors) {
+        if (actor->isAt(x, y)) {
+            actor->damage();
+        }
+    }
+}
+
 bool StudentWorld::overlapsWithPeach(int x, int y) const {
     if (m_Peach->isAt(x, y))
         return true;

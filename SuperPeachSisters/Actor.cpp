@@ -95,7 +95,7 @@ void Peach::doSomething() {
                 if (m_powerups.find("ShootPower") != m_powerups.end() && time_to_recharge_before_next_fire <= 0) {
                     world()->playSound(SOUND_PLAYER_FIRE);
                     time_to_recharge_before_next_fire = 8;
-                    //TODO: fireball implementation
+                    world()->createActor(IID_PEACH_FIRE, getX(), getY(), getDirection());
                 }
                 break;
         }
@@ -325,6 +325,11 @@ Goomba::Goomba(StudentWorld* StudentWorld, int startX, int startY, int imageID) 
 
 Koopa::Koopa(StudentWorld* StudentWorld, int startX, int startY) : Goomba(StudentWorld, startX, startY, IID_KOOPA) {}
 
+void Koopa::damage() {
+    Enemy::damage();
+    world()->createActor(IID_SHELL, getX(), getY(), getDirection());
+}
+
 Piranha::Piranha(StudentWorld* StudentWorld, int startX, int startY) : Enemy(StudentWorld, IID_PIRANHA, startX, startY) {
     m_firing_delay = 0;
 }
@@ -349,7 +354,7 @@ void Piranha::doSomething() {
         return;
     }
     if (world()->peachInRange(getX())) {
-        //TODO: shoot a fireball
+        world()->createActor(IID_PIRANHA_FIRE, getX(), getY(), getDirection());
         world()->playSound(SOUND_PIRANHA_FIRE);
         m_firing_delay = 40;
     }
@@ -361,7 +366,7 @@ Projectile::Projectile(StudentWorld* StudentWorld, int imageID, int x, int y, in
 
 void Projectile::doSomething() {
     if (overlapsWithTarget(getX(), getY())) {
-        world()->damagePeach();
+        damageTarget(getX(), getY());
         toggleAlive();
         return;
     }
@@ -388,10 +393,18 @@ bool Projectile::overlapsWithTarget(int x, int y) {
     return world()->damageableObjectAt(x, y);
 }
 
+void Projectile::damageTarget(int x, int y) {
+    world()->damageObjectsAt(x, y);
+}
+
 PiranhaFire::PiranhaFire(StudentWorld* StudentWorld, int x, int y, int startDirection) : Projectile(StudentWorld, IID_PIRANHA_FIRE, x, y, startDirection) {}
 
 bool PiranhaFire::overlapsWithTarget(int x, int y) {
     return world()->overlapsWithPeach(x, y);
+}
+
+void PiranhaFire::damageTarget(int x, int y) {
+    world()->damagePeach();
 }
 
 PeachFire::PeachFire(StudentWorld* StudentWorld, int x, int y, int startDirection) : Projectile(StudentWorld, IID_PEACH_FIRE, x, y, startDirection) {}

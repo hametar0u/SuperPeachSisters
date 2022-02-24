@@ -170,6 +170,8 @@ class Koopa : public Goomba {
 public:
     Koopa(StudentWorld* StudentWorld, int startX, int startY);
     virtual ~Koopa() { cerr << "destroying koopa" << endl; }
+    
+    virtual void damage();
 };
 
 class Piranha : public Enemy {
@@ -194,6 +196,7 @@ public:
     
 protected:
     virtual bool overlapsWithTarget(int x, int y);
+    virtual void damageTarget(int x, int y);
     
 };
 
@@ -204,6 +207,7 @@ public:
     
 protected:
     virtual bool overlapsWithTarget(int x, int y);
+    virtual void damageTarget(int x, int y);
     
 };
 

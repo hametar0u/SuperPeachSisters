@@ -25,6 +25,7 @@ public:
     bool damageableObjectAt(int x, int y) const;
     bool obstacleAt(int x, int y) const;
     void bonkObjectsAt(int x, int y) const;
+    void damageObjectsAt(int x, int y) const;
     bool overlapsWithPeach(int x, int y) const;
     bool onSameLevelAsPeach(int x, int y, bool& onLeft);
     bool peachInRange(int x) const;

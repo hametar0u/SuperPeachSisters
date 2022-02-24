@@ -243,7 +243,7 @@ bool StudentWorld::peachInRange(int x) const {
     return peach_x > x - 8*SPRITE_WIDTH && peach_x < x + 8*SPRITE_WIDTH;
 }
 
-void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this should mostly be used for powerups but I'll keep it general for now
+void StudentWorld::createActor(int typeOfActor, int x, int y, int startDirection) {
     switch (typeOfActor) {
         case IID_FLOWER:
             m_actors.push_front(new Flower(this, x, y));
@@ -256,6 +256,18 @@ void StudentWorld::createActor(int typeOfActor, int x, int y) { //TODO: this sho
         case IID_STAR:
             m_actors.push_front(new Star(this, x, y));
             cerr << "created star at: " << x << "," << y << endl;
+            break;
+        case IID_PIRANHA_FIRE:
+            m_actors.push_front(new PiranhaFire(this, x, y, startDirection));
+            cerr << "created piranha fireball" << endl;
+            break;
+        case IID_PEACH_FIRE:
+            m_actors.push_front(new PeachFire(this, x, y, startDirection));
+            cerr << "created peach fireball" << endl;
+            break;
+        case IID_SHELL:
+            m_actors.push_front(new Shell(this, x, y, startDirection));
+            cerr << "created shell" << endl;
             break;
     }
 }

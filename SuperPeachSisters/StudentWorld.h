@@ -38,7 +38,7 @@ public:
     void setPeachHealth(int amt);
     
     //actor manipulation
-    void createActor(int typeOfActor, int x, int y);
+    void createActor(int typeOfActor, int x, int y, int startDirection = 0);
     //note: to delete an actor, just iterate through m_actors on each cycle, check alive/death status, and delete accordingly
     
     void finishLevel() { level_finished = true; }

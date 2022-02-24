@@ -28,7 +28,7 @@ int StudentWorld::init()
     ostringstream oss;
     oss << "level0" << getLevel() << ".txt";
     
-    string level_file = oss.str(); //TODO: use stringstream to generate filename instead of hard coding like this
+    string level_file = oss.str();
     Level::LoadResult result = lev.loadLevel(level_file);
     if (result == Level::load_fail_file_not_found) {
         cerr << "Could not find level01.txt data file" << endl;

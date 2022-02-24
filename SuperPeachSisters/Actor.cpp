@@ -85,7 +85,7 @@ void Peach::doSomething() {
                         remaining_jump_distance = 12;
                     }
                     else {
-                        remaining_jump_distance = 64; //TODO: change back to 8
+                        remaining_jump_distance = 8;
                     }
                     world()->playSound(SOUND_PLAYER_JUMP);
                     return;
@@ -132,14 +132,11 @@ bool Peach::hasBuff(string buff) {
     return m_powerups.find(buff) != m_powerups.end() ? true : false;
 }
 
-//================================================== OBSTACLE ==================================================//
+//================================================== OBSTACLES ==================================================//
 
 Obstacle::Obstacle(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, 0, 2 /*default size*/) {}
 
 void Obstacle::doSomething() { return; } //it's supposed to do nothing
-
-
-//================================================== BLOCK ==================================================//
 
 Block::Block(StudentWorld* StudentWorld, int x, int y, GoodieType goodie) : Obstacle(StudentWorld, IID_BLOCK, x, y) {
     m_goodie = goodie;
@@ -174,8 +171,6 @@ void Block::releaseGoodie() {
     
     m_goodie = none;
 }
-
-//================================================== PIPE ==================================================//
 
 Pipe::Pipe(StudentWorld* StudentWorld, int x, int y) : Obstacle(StudentWorld, IID_PIPE, x, y) {}
 
@@ -308,8 +303,7 @@ void Enemy::doSomething() {
 }
 
 void Enemy::bonk() {
-    //TODO: if bonker is not peach, ignore
-    //てかその必要もないじゃん
+    //only peach will ever bonk objects so this is fine
     if (world()->peachIsInvincible()) {
         damage();
     }

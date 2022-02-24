@@ -23,7 +23,6 @@ public:
     
     //setters
     void toggleAlive() { m_isAlive = !m_isAlive; }
-    void setPos(int new_x, int new_y);
     
     //other
     virtual void doSomething() = 0;

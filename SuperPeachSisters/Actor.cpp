@@ -360,8 +360,8 @@ void Piranha::doSomething() {
 Projectile::Projectile(StudentWorld* StudentWorld, int imageID, int x, int y, int startDirection) : Actor(StudentWorld, imageID, x, y, startDirection, 1) {}
 
 void Projectile::doSomething() {
-    if (world()->overlapsWithPeach(getX(), getY())) {
-        world()->bonkPeach(); //TODO: should be damage??
+    if (overlapsWithTarget(getX(), getY())) {
+        world()->damagePeach();
         toggleAlive();
         return;
     }
@@ -383,3 +383,17 @@ void Projectile::doSomething() {
         moveTo(target_x, target_y);
     }
 }
+
+bool Projectile::overlapsWithTarget(int x, int y) {
+    return world()->damageableObjectAt(x, y);
+}
+
+PiranhaFire::PiranhaFire(StudentWorld* StudentWorld, int x, int y, int startDirection) : Projectile(StudentWorld, IID_PIRANHA_FIRE, x, y, startDirection) {}
+
+bool PiranhaFire::overlapsWithTarget(int x, int y) {
+    return world()->overlapsWithPeach(x, y);
+}
+
+PeachFire::PeachFire(StudentWorld* StudentWorld, int x, int y, int startDirection) : Projectile(StudentWorld, IID_PEACH_FIRE, x, y, startDirection) {}
+
+Shell::Shell(StudentWorld* StudentWorld, int x, int y, int startDirection) : Projectile(StudentWorld, IID_SHELL, x, y, startDirection) {}

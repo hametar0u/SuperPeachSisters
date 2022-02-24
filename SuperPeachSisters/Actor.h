@@ -192,13 +192,18 @@ public:
     
     virtual void doSomething();
     
+protected:
+    virtual bool overlapsWithTarget(int x, int y);
+    
 };
 
-//TODO: implement
 class PiranhaFire : public Projectile {
 public:
     PiranhaFire(StudentWorld* StudentWorld, int x, int y, int startDirection);
     virtual ~PiranhaFire() { cerr << "destroying piranhafire " << endl; }
+    
+protected:
+    virtual bool overlapsWithTarget(int x, int y);
     
 };
 
@@ -207,6 +212,7 @@ public:
     PeachFire(StudentWorld* StudentWorld, int x, int y, int startDirection);
     virtual ~PeachFire() { cerr << "destroying peachfire " << endl; }
 };
+
 class Shell : public Projectile {
 public:
     Shell(StudentWorld* StudentWorld, int x, int y, int startDirection);

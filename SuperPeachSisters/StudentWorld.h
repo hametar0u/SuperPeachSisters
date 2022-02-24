@@ -33,6 +33,7 @@ public:
     bool peachIsInvincible() { return m_Peach->hasBuff("StarPower"); }
     
     void bonkPeach() { m_Peach->bonk(); }
+    void damagePeach() { m_Peach->damage(); }
     void buffPeach(std::string buff);
     void setPeachHealth(int amt);
     

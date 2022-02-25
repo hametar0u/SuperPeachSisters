@@ -234,7 +234,7 @@ void StudentWorld::buffPeach(string buff) {
 }
 
 void StudentWorld::setPeachHealth(int amt) {
-    m_Peach->setHealth(2);
+    m_Peach->setHealth(amt);
 }
 
 bool StudentWorld::onSameLevelAsPeach(int x, int y, bool& onLeft) {

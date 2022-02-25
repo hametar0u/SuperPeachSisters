@@ -266,7 +266,7 @@ Star::Star(StudentWorld* StudentWorld, int x, int y) : Goodie(StudentWorld, IID_
 
 //================================================== ENEMIES ==================================================//
 
-Enemy::Enemy(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, (rand()%2 == 0) ? 0 : 180) {}
+Enemy::Enemy(StudentWorld* StudentWorld, int imageID, int startX, int startY) : Actor(StudentWorld, imageID, startX, startY, randInt(0, 1) * 180) {}
 
 void Enemy::doSomething() {
     if (!isAlive())

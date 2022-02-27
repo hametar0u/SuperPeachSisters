@@ -305,12 +305,12 @@ void Enemy::doSomething() {
 void Enemy::bonk() {
     //only peach will ever bonk objects so this is fine
     if (world()->peachIsInvincible()) {
+        world()->playSound(SOUND_PLAYER_KICK);
         damage();
     }
 }
 
 void Enemy::damage() {
-    world()->playSound(SOUND_PLAYER_KICK);
     world()->increaseScore(100);
     toggleAlive();
 }

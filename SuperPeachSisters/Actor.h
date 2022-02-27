@@ -70,6 +70,7 @@ public:
     virtual ~Flag() {}
     
     virtual void doSomething();
+protected:
     virtual void progressNext();
 };
 
@@ -77,7 +78,7 @@ class Mario : public Flag {
 public:
     Mario(StudentWorld* StudentWorld, int x, int y);
     virtual ~Mario() {}
-    
+protected:
     virtual void progressNext();
     
 };
@@ -130,12 +131,10 @@ public:
     Block(StudentWorld* StudentWorld, int x, int y, GoodieType goodie);
     virtual ~Block() {}
     
-    //goodies
-    bool hasGoodie() const { return m_goodie != none; };
-    void releaseGoodie();
-    
     virtual void bonk();
 private:
+    bool hasGoodie() const { return m_goodie != none; };
+    void releaseGoodie();
     GoodieType m_goodie;
 };
 

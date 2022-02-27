@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>69B33E5E-856D-4839-AB36-9B45BAE3274C</key>
+		<key>55562997-1DDE-4C8F-8C16-01CB98999B62</key>
 		<dict>
 			<key>className</key>
 			<string>DBGConsoleLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
 			<key>fileName</key>
-			<string>69B33E5E-856D-4839-AB36-9B45BAE3274C.xcactivitylog</string>
+			<string>55562997-1DDE-4C8F-8C16-01CB98999B62.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -32,15 +32,15 @@
 			<key>signature</key>
 			<string>Run SuperPeachSisters</string>
 			<key>timeStartedRecording</key>
-			<real>667412645.704723</real>
+			<real>667633210.01654994</real>
 			<key>timeStoppedRecording</key>
-			<real>667412836.74356604</real>
+			<real>667633326.00549603</real>
 			<key>title</key>
 			<string>Run SuperPeachSisters</string>
 			<key>uniqueIdentifier</key>
-			<string>69B33E5E-856D-4839-AB36-9B45BAE3274C</string>
+			<string>55562997-1DDE-4C8F-8C16-01CB98999B62</string>
 		</dict>
-		<key>C2D42CB2-79B5-43AF-A45D-F56CCDB5B256</key>
+		<key>79A4208C-98D5-44F6-84B0-8B1CE5FD6152</key>
 		<dict>
 			<key>className</key>
 			<string>DBGConsoleLog</string>
@@ -49,7 +49,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
 			<key>fileName</key>
-			<string>C2D42CB2-79B5-43AF-A45D-F56CCDB5B256.xcactivitylog</string>
+			<string>79A4208C-98D5-44F6-84B0-8B1CE5FD6152.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -66,13 +66,81 @@
 			<key>signature</key>
 			<string>Run SuperPeachSisters</string>
 			<key>timeStartedRecording</key>
-			<real>667519357.28753603</real>
+			<real>667667189.98883998</real>
 			<key>timeStoppedRecording</key>
-			<real>667519468.19112599</real>
+			<real>667667258.73830497</real>
 			<key>title</key>
 			<string>Run SuperPeachSisters</string>
 			<key>uniqueIdentifier</key>
-			<string>C2D42CB2-79B5-43AF-A45D-F56CCDB5B256</string>
+			<string>79A4208C-98D5-44F6-84B0-8B1CE5FD6152</string>
+		</dict>
+		<key>96DFEF20-79DA-49B1-91D9-8BA2AF17D18B</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>96DFEF20-79DA-49B1-91D9-8BA2AF17D18B.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667666909.94738197</real>
+			<key>timeStoppedRecording</key>
+			<real>667666927.637609</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>96DFEF20-79DA-49B1-91D9-8BA2AF17D18B</string>
+		</dict>
+		<key>DBB6E318-7B46-4575-B9DC-A90817415CCA</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>DBB6E318-7B46-4575-B9DC-A90817415CCA.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SuperPeachSisters project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SuperPeachSisters</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run SuperPeachSisters</string>
+			<key>timeStartedRecording</key>
+			<real>667667128.58839202</real>
+			<key>timeStoppedRecording</key>
+			<real>667667185.80537903</real>
+			<key>title</key>
+			<string>Run SuperPeachSisters</string>
+			<key>uniqueIdentifier</key>
+			<string>DBB6E318-7B46-4575-B9DC-A90817415CCA</string>
 		</dict>
 	</dict>
 </dict>
